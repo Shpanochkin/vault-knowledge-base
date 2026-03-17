@@ -1,0 +1,13 @@
+{
+  "name": "vault-policies",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node src/build.js",
+    "html": "node src/build.js --html-only",
+    "pdf": "node src/build.js --pdf-only"
+  },
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
