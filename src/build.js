@@ -809,7 +809,7 @@ function generateHTML(doc) {
         <div class="footer-divider"></div>
         <span class="footer-label">Confidential &middot; Internal Use Only</span>
       </div>
-      <div class="footer-right">Vault Group &copy; ${new Date().getFullYear()}</div>
+      <div class="footer-right"><a href="admin.html" style="color:rgba(255,255,255,0.12);text-decoration:none;font-size:11px;" title="Admin">Manage</a></div>
     </div>
   </footer>
 
@@ -908,6 +908,27 @@ function generateHTML(doc) {
       resize();
       window.addEventListener('resize', resize);
       draw();
+    })();
+
+    // ── Dynamic content loader from content.json ──
+    (function() {
+      const DOC_ID = '${doc.id}';
+      fetch('content.json').then(r => r.ok ? r.json() : null).catch(() => null).then(data => {
+        if (!data || !data[DOC_ID]) return;
+        const d = data[DOC_ID];
+        const intro = document.querySelector('.intro-text');
+        if (intro && d.intro) intro.innerHTML = d.intro;
+        const closing = document.querySelector('.callout.closing');
+        if (closing && d.closing) closing.innerHTML = d.closing;
+        const sections = document.querySelectorAll('.section');
+        if (d.sections) d.sections.forEach((s, i) => {
+          if (!sections[i]) return;
+          const h = sections[i].querySelector('h2');
+          const b = sections[i].querySelector('.section-body');
+          if (h && s.title) h.textContent = s.title;
+          if (b && s.html) b.innerHTML = s.html;
+        });
+      });
     })();
   </script>
 </body>
@@ -1403,6 +1424,29 @@ if (!pdfOnly) {
     console.log(`  ✓ ${doc.id}.html`);
   }
   console.log(`\n  ${documents.length} HTML files written to output/\n`);
+
+  // Generate content.json for dynamic loading + admin editing
+  const docsDir = path.join(__dirname, '..', 'docs');
+  fs.mkdirSync(docsDir, { recursive: true });
+
+  const contentData = {};
+  for (const doc of documents) {
+    contentData[doc.id] = {
+      intro: doc.intro || '',
+      closing: doc.closing || '',
+      sections: doc.sections.map(s => ({
+        number: s.number,
+        title: s.title,
+        html: renderContent(s.content)
+      }))
+    };
+  }
+  fs.writeFileSync(
+    path.join(docsDir, 'content.json'),
+    JSON.stringify(contentData, null, 2),
+    'utf-8'
+  );
+  console.log('  ✓ content.json written to docs/\n');
 }
 
 // Generate PDFs
