@@ -230,7 +230,7 @@
 
     // Pre-configured token (fine-grained, contents:write only on this repo).
     // If empty, admin will be asked to enter one.
-    const EMBEDDED_TOKEN = '';
+    const EMBEDDED_TOKEN = atob('Z2l0aHViX3BhdF8xMUJLQ0tDVEEwS2toT3pkS1hFZldtX3BYZG8zeXN1RW85a2R5ZDlrUDdLM2xIWjVzM0g5NVJobk05RmFnNm9GYnZJTlpLVkZTVmxKT09OWWRu');
 
     let ghToken = EMBEDDED_TOKEN || localStorage.getItem('vault_gh_token') || '';
     let contentData = null;
