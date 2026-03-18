@@ -1425,13 +1425,19 @@ if (!pdfOnly) {
   }
   console.log(`\n  ${documents.length} HTML files written to output/\n`);
 
-  // Generate content.json for dynamic loading + admin editing
+  // Generate content.json — merge with existing HR edits
   const docsDir = path.join(__dirname, '..', 'docs');
   fs.mkdirSync(docsDir, { recursive: true });
 
+  const contentJsonPath = path.join(docsDir, 'content.json');
+  let existingContent = {};
+  try {
+    existingContent = JSON.parse(fs.readFileSync(contentJsonPath, 'utf-8'));
+  } catch {}
+
   const contentData = {};
   for (const doc of documents) {
-    contentData[doc.id] = {
+    const defaults = {
       intro: doc.intro || '',
       closing: doc.closing || '',
       sections: doc.sections.map(s => ({
@@ -1440,12 +1446,29 @@ if (!pdfOnly) {
         html: renderContent(s.content)
       }))
     };
+
+    const existing = existingContent[doc.id];
+    if (existing) {
+      // Preserve HR edits: use existing values, only add new sections from build
+      contentData[doc.id] = {
+        intro: existing.intro || defaults.intro,
+        closing: existing.closing || defaults.closing,
+        sections: defaults.sections.map((defSec, i) => {
+          const exSec = existing.sections && existing.sections[i];
+          if (exSec && exSec.number === defSec.number) {
+            return { number: defSec.number, title: exSec.title, html: exSec.html };
+          }
+          return defSec; // new section — use default
+        })
+      };
+      console.log(`  ↔ ${doc.id}: merged with existing HR edits`);
+    } else {
+      contentData[doc.id] = defaults;
+      console.log(`  + ${doc.id}: new document, using defaults`);
+    }
   }
-  fs.writeFileSync(
-    path.join(docsDir, 'content.json'),
-    JSON.stringify(contentData, null, 2),
-    'utf-8'
-  );
+
+  fs.writeFileSync(contentJsonPath, JSON.stringify(contentData, null, 2), 'utf-8');
   console.log('  ✓ content.json written to docs/\n');
 }
 
