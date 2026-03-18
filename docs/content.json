@@ -1,0 +1,193 @@
+{
+  "Code_of_Conduct": {
+    "intro": "As a global and diverse team, it is essential that we maintain a positive and respectful work environment. Below are the guidelines we follow to ensure a healthy, inclusive, and productive workplace.",
+    "closing": "Let's work together to maintain a positive and collaborative environment where everyone can thrive!",
+    "sections": [
+      {
+        "number": "01",
+        "title": "Respect and Inclusivity",
+        "html": "<ul><li>Treat all team members with respect, regardless of their background, gender, race, religion, or personal beliefs.</li><li>Embrace diversity and create an environment where everyone feels valued and heard.</li></ul>"
+      },
+      {
+        "number": "02",
+        "title": "Professionalism",
+        "html": "<ul><li>Maintain a professional tone in all communications, whether on Slack, email, or during meetings.</li><li>Be mindful of your language and always communicate in a clear and constructive manner.</li></ul>"
+      },
+      {
+        "number": "03",
+        "title": "No Tolerance for Harassment",
+        "html": "<ul><li>Harassment, bullying, or any form of disrespectful behavior will not be tolerated. If you witness or experience inappropriate behavior, please report it to HR or a team leader.</li><li>This includes but is not limited to: discriminatory language, personal attacks, inappropriate jokes, or offensive content.</li></ul>"
+      },
+      {
+        "number": "04",
+        "title": "Collaboration and Teamwork",
+        "html": "<ul><li>Be supportive of your colleagues. Help when needed, share knowledge, and contribute positively to discussions.</li><li>Use channels and meetings as spaces for collaborative problem-solving, not for individual complaints or negative remarks.</li></ul>"
+      },
+      {
+        "number": "05",
+        "title": "Accountability and Integrity",
+        "html": "<ul><li>Take responsibility for your actions, both individually and as part of the team.</li><li>Be honest, transparent, and respectful when providing feedback or addressing mistakes.</li></ul>"
+      },
+      {
+        "number": "06",
+        "title": "Privacy and Confidentiality",
+        "html": "<ul><li>Respect the privacy of colleagues and company information.</li><li>Do not share sensitive information in public channels or outside the company unless authorized.</li></ul>"
+      },
+      {
+        "number": "07",
+        "title": "Work-Life Balance",
+        "html": "<ul><li>Respect others’ time. Do not expect immediate responses outside of working hours unless it is an urgent matter.</li><li>Acknowledge the importance of maintaining a balance between work and personal life for overall well-being.</li></ul>"
+      },
+      {
+        "number": "08",
+        "title": "Constructive Communication",
+        "html": "<ul><li>If you have a concern or disagreement, address it respectfully and constructively. Focus on finding solutions, not placing blame.</li><li>Encourage open dialogue and avoid assumptions.</li></ul>"
+      },
+      {
+        "number": "09",
+        "title": "Encourage Fun and Positivity",
+        "html": "<ul><li>While we take our work seriously, we also encourage fun and positive interactions.</li><li>Use the appropriate channels for non-work conversations, share jokes, stories, and celebrate milestones.</li></ul>"
+      },
+      {
+        "number": "10",
+        "title": "Lead by Example",
+        "html": "<ul><li>Be a role model for others in terms of behavior, attitude, and professionalism.</li><li>By following these guidelines, we create a culture that promotes mutual respect and success.</li></ul>"
+      }
+    ]
+  },
+  "Communication_Guidelines": {
+    "intro": "As a globally distributed team, clear communication is essential to our success. Here is how we maintain efficient and respectful communication across all platforms.",
+    "closing": "Let's keep communication clear, collaborative, and fun!",
+    "sections": [
+      {
+        "number": "01",
+        "title": "General Guidelines",
+        "html": "<ul><li><strong>Language:</strong> Our primary language for communication is English to ensure inclusivity and understanding for everyone.</li><li><strong>For priority requests:</strong> Use email. For everyday matters: Slack channels.</li><li><strong>Be clear and concise:</strong> Whether writing an email, Slack message, or preparing for a meeting, aim for clarity and brevity.</li><li><strong>Be respectful:</strong> Always maintain a professional and respectful tone in all communications.</li><li><strong>Review the Vault Code of Conduct:</strong> Ensure you are familiar with and follow the Vault Code of Conduct to help maintain a respectful and professional work environment.</li></ul>"
+      },
+      {
+        "number": "02",
+        "title": "Email Communication",
+        "html": "<ul><li>Use clear subject lines to indicate the purpose of your email (e.g., \"[ACTION REQUIRED] Team Feedback\" or \"[FYI] New Process Update\").</li><li>Always address the recipient(s) and close with a polite signature. Do not forget CC.</li><li>Keep emails focused and avoid overly long messages. If multiple topics need to be discussed, use bullet points for structure.</li><li>For urgent matters, consider using Slack or scheduling a meeting. Emails are better suited for formal or non-urgent communication.</li></ul>"
+      },
+      {
+        "number": "03",
+        "title": "Slack Communication",
+        "html": "<ul><li><strong>Public channels &gt; DMs:</strong> Whenever possible, use public channels to keep conversations transparent and inclusive.</li><li><strong>@here and @channel:</strong> Use these mentions sparingly to avoid unnecessary disruptions. Only use them for critical updates.</li><li><strong>Thread replies:</strong> Use threads to keep conversations organized and prevent flooding the channel.</li><li><strong>Be mindful of time zones:</strong> Our distributed team spans various time zones, so be considerate when expecting responses.</li><li><strong>React with emojis:</strong> Use emojis to acknowledge posts/requests. It is a simple way to show you have seen the message without needing to reply.</li><li><strong>Set your status:</strong> When on vacation, sick, commuting, or away from your desk. This helps everyone know your availability and manage expectations for response times.</li></ul>"
+      },
+      {
+        "number": "04",
+        "title": "Deadlines for Replies",
+        "html": "<div class=\"table-wrapper\"><table>\n          <thead><tr><th>Type</th><th>Response Time</th></tr></thead>\n          <tbody><tr><td>Urgent cases</td><td>Within 2 hours during working hours</td></tr><tr><td>Non-urgent cases</td><td>Within 1 business day</td></tr></tbody>\n        </table></div>\n<p>If you are unable to respond in time, kindly let your team know when you will be available.</p>"
+      },
+      {
+        "number": "05",
+        "title": "Meeting Etiquette",
+        "html": "<ul><li><strong>Preparation:</strong> Share an agenda in advance to give participants time to prepare.</li><li><strong>Time Management:</strong> Start and end meetings on time. Respect everyone’s schedule.</li><li><strong>Active Participation:</strong> Use video whenever possible for better engagement. Stay focused and minimize distractions.</li><li><strong>Follow-Up:</strong> Summarize key decisions and next steps in Slack. Put tasks in Task Tracker during the call.</li></ul>"
+      }
+    ]
+  },
+  "Equipment_Policy": {
+    "intro": "This policy outlines the procedures for requesting, using, maintaining, and returning company equipment at Vault. It applies to employees who require company-issued hardware for their work.",
+    "closing": "",
+    "sections": [
+      {
+        "number": "01",
+        "title": "Equipment Issuance",
+        "html": "<div class=\"subsection\"><h3>For New Employees</h3><ul><li>During the hiring process, the Recruiter will confirm whether the new employee requires company equipment.</li><li>If equipment is needed, the Recruiter will submit a request to the IT Admin, specifying the required equipment.</li><li>The IT Admin will check the available stock and process the request.</li></ul></div>\n<div class=\"subsection\"><h3>For Current Employees</h3><p>If an existing team member requires additional or replacement equipment, they must submit a request directly to the IT Admin.</p></div>\n<div class=\"callout important\"><strong>Important:</strong> Equipment can only be provided to employees located in Moscow.</div>"
+      },
+      {
+        "number": "02",
+        "title": "Equipment Repairs",
+        "html": "<div class=\"subsection\"><h3>Non-Mechanical Damage (Company Covers Repair Cost)</h3><p>If the damage is not caused by external impact, the employee covers the cost upfront, and the company fully reimburses the expense.</p>\n<ul><li>Software malfunctions: system crashes, frequent errors, or performance issues not caused by external damage.</li><li>Hardware failures: internal component issues (e.g., motherboard, SSD, battery degradation) without visible physical damage.</li><li>Overheating issues due to internal defects rather than misuse.</li><li>Charging or power problems due to internal faults, not damaged ports or cables.</li><li>Network or connectivity failures unrelated to physical damage.</li></ul></div>\n<div class=\"subsection\"><h3>Mechanical Damage (Employee Covers Repair Cost)</h3><p>If the damage is due to misuse, external impact, or improper handling, the employee is responsible for the full repair cost.</p>\n<ul><li>Cracked or broken screen.</li><li>Liquid spills causing malfunction.</li><li>Damaged ports or keyboard due to improper handling.</li></ul></div>"
+      },
+      {
+        "number": "03",
+        "title": "Equipment Return Upon Termination",
+        "html": "<p>Employees leaving Vault have two options:</p>\n<ul><li><strong>Return to IT Admin:</strong> The IT Admin will inspect the equipment and return it to inventory.</li><li><strong>Request to Purchase:</strong> Employees can submit a buyout request. If approved, the IT Admin will determine a fair price based on the device’s age and specifications. The buyout amount will be deducted from the final salary payout.</li></ul>"
+      },
+      {
+        "number": "04",
+        "title": "Final Provisions",
+        "html": "<ul><li>Employees are responsible for using company equipment properly and securely.</li><li>The IT Admin reserves the right to inspect and audit company-issued equipment.</li></ul>"
+      }
+    ]
+  },
+  "Salary_Invoice_Submission": {
+    "intro": "At Vault, salaries are processed once a month, specifically on the <strong>10th of each month</strong>. If the 10th falls on a weekend or public holiday, payments will be processed on the next working day.",
+    "closing": "",
+    "sections": [
+      {
+        "number": "01",
+        "title": "Salary Payment Method",
+        "html": "<ul><li>Payments are made in cryptocurrency (<strong>USDT</strong>).</li><li>Funds are transferred to the crypto wallet specified by the employee.</li><li>You may use any platform of your choice, as long as it is secure and convenient.</li></ul>\n<div class=\"callout important\"><strong>Important:</strong> Your wallet must support the <strong>TRC-20 network</strong> to receive payments.</div>"
+      },
+      {
+        "number": "02",
+        "title": "Invoice Submission Process",
+        "html": "<div class=\"subsection\"><h3>Step 1: Invoice Request</h3><p>1–2 days before the payment date, the accounting team will contact you to request an invoice submission. A sample invoice template will be provided.</p></div>\n<div class=\"subsection\"><h3>Step 2: How to Fill Out Your Invoice</h3><ul><li>In the <strong>Bank Details</strong> field, enter only your crypto wallet address and the network (TRC-20).</li><li>In the <strong>Description</strong> field, specify the services you provide, as outlined in your contract.</li><li>Update the <strong>date</strong> each month.</li><li>Add your <strong>signature</strong> at the bottom before submitting.</li></ul></div>\n<div class=\"subsection\"><h3>Step 3: Invoice Submission</h3><p>Once completed, submit your invoice promptly to avoid payment delays.</p></div>\n<div class=\"callout tip\"><strong>Tip:</strong> Double-check your wallet address and ensure it supports TRC-20 to prevent transaction issues.</div>"
+      }
+    ]
+  },
+  "Vault_Business_Glossary": {
+    "intro": "Below is a categorized glossary to help team members understand core concepts and terminology used at Vault across IT, Fintech, Crypto, and more.",
+    "closing": "If you come across any terms or concepts that you believe should be included here, let the HR team know!",
+    "sections": [
+      {
+        "number": "01",
+        "title": "Banking and Payments",
+        "html": "<div class=\"definitions-grid\"><div class=\"definition\"><span class=\"definition-term\">IBAN</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(International Bank Account Number) — A special number that helps banks identify your account for sending or receiving money internationally.</span></div><div class=\"definition\"><span class=\"definition-term\">SWIFT Code</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A unique code used by banks for international transfers to make sure the money gets to the right place.</span></div><div class=\"definition\"><span class=\"definition-term\">KYC</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Know Your Customer) — A process where companies check who you are by asking for your ID or other documents to avoid fraud.</span></div><div class=\"definition\"><span class=\"definition-term\">KYB</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Know Your Business) — A process to verify businesses just like KYC for individuals. Helps prevent fraud and money laundering.</span></div><div class=\"definition\"><span class=\"definition-term\">AML</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Anti-Money Laundering) — Rules to stop bad actors from using money they got illegally.</span></div><div class=\"definition\"><span class=\"definition-term\">PSP</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Payment Service Provider) — A company that helps businesses accept payments, like PayPal or Stripe.</span></div><div class=\"definition\"><span class=\"definition-term\">On-Ramp</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Converting regular money (like dollars or euros) into cryptocurrency.</span></div><div class=\"definition\"><span class=\"definition-term\">Off-Ramp</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Changing cryptocurrency back into regular money.</span></div><div class=\"definition\"><span class=\"definition-term\">SEPA</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Single Euro Payments Area) — A system to make sending money across Europe simple and fast.</span></div><div class=\"definition\"><span class=\"definition-term\">CVC</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Card Verification Code) — The 3-digit number on the back of your card used for secure online payments.</span></div></div>"
+      },
+      {
+        "number": "02",
+        "title": "Blockchain and Crypto",
+        "html": "<div class=\"definitions-grid\"><div class=\"definition\"><span class=\"definition-term\">Blockchain</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A secure digital ledger for keeping records of transactions. Everyone can see it, but no one can change past entries.</span></div><div class=\"definition\"><span class=\"definition-term\">Crypto Exchange</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A platform to buy, sell, or trade cryptocurrencies like Bitcoin or Ethereum.</span></div><div class=\"definition\"><span class=\"definition-term\">Token</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A digital asset that can represent money, a piece of a company, or access to services.</span></div><div class=\"definition\"><span class=\"definition-term\">Utility Token</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A token that gives access to a specific service (like a gift card).</span></div><div class=\"definition\"><span class=\"definition-term\">Security Token</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Like a digital stock representing ownership in a company.</span></div><div class=\"definition\"><span class=\"definition-term\">Governance Token</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A token that lets you vote on decisions for a blockchain project.</span></div><div class=\"definition\"><span class=\"definition-term\">Stablecoin</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A cryptocurrency designed to match the value of regular money, like USD.</span></div><div class=\"definition\"><span class=\"definition-term\">NFT</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Non-Fungible Token) — A one-of-a-kind digital item, like art, music, or collectibles.</span></div><div class=\"definition\"><span class=\"definition-term\">DeFi</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Decentralized Finance) — Financial services (like loans or savings) without banks, built on blockchain.</span></div><div class=\"definition\"><span class=\"definition-term\">Swaps</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Exchanging one cryptocurrency for another.</span></div><div class=\"definition\"><span class=\"definition-term\">Liquidity Pool</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A shared pot of crypto that helps make trading easier.</span></div><div class=\"definition\"><span class=\"definition-term\">Gas Fees</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Small payments to process your transaction on the blockchain.</span></div><div class=\"definition\"><span class=\"definition-term\">Perpetual Contracts</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Crypto deals to bet on prices without owning the coins, with no expiry date.</span></div><div class=\"definition\"><span class=\"definition-term\">DAO</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Decentralized Autonomous Organization) — A blockchain project run by its users using smart contracts, without a boss.</span></div><div class=\"definition\"><span class=\"definition-term\">Layer 1 Blockchain</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— The main blockchain, like Bitcoin or Ethereum.</span></div><div class=\"definition\"><span class=\"definition-term\">Layer 2 Solution</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Upgrades that work on top of Layer 1 to make transactions faster and cheaper.</span></div><div class=\"definition\"><span class=\"definition-term\">Ecosystem</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— The network of people, tools, and services that support a blockchain project.</span></div></div>"
+      },
+      {
+        "number": "03",
+        "title": "Technology and Development",
+        "html": "<div class=\"definitions-grid\"><div class=\"definition\"><span class=\"definition-term\">API</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Application Programming Interface) — A tool that lets apps talk to each other (like when Uber uses Google Maps).</span></div><div class=\"definition\"><span class=\"definition-term\">SDK</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Software Development Kit) — A set of tools developers use to build apps or features.</span></div><div class=\"definition\"><span class=\"definition-term\">Wallet</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A digital tool for storing and using cryptocurrency. Hot wallets are online (convenient), cold wallets are offline (safer).</span></div><div class=\"definition\"><span class=\"definition-term\">Smart Contract</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A computer program that automatically does something (like sending money) when conditions are met.</span></div><div class=\"definition\"><span class=\"definition-term\">Hashing</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Turning data into a unique code to keep it secure.</span></div><div class=\"definition\"><span class=\"definition-term\">Mining</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Using computers to process blockchain transactions and earn cryptocurrency rewards.</span></div><div class=\"definition\"><span class=\"definition-term\">Proof-of-Work (PoW)</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A system where miners solve puzzles to secure the blockchain.</span></div><div class=\"definition\"><span class=\"definition-term\">Proof-of-Stake (PoS)</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— A system where people stake their crypto to help secure the blockchain.</span></div><div class=\"definition\"><span class=\"definition-term\">White Label</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Ready-made products (like crypto wallets) that companies can rebrand and sell as their own.</span></div></div>"
+      },
+      {
+        "number": "04",
+        "title": "Operations and Metrics",
+        "html": "<div class=\"definitions-grid\"><div class=\"definition\"><span class=\"definition-term\">CAC</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Customer Acquisition Cost) — How much it costs to get one customer.</span></div><div class=\"definition\"><span class=\"definition-term\">LTV</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">(Lifetime Value) — The total money a customer brings to the company during their time as a client.</span></div><div class=\"definition\"><span class=\"definition-term\">Fiat</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Regular government-issued money, like dollars or euros.</span></div><div class=\"definition\"><span class=\"definition-term\">Liquidity</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— How easy it is to turn an asset (like crypto) into cash.</span></div><div class=\"definition\"><span class=\"definition-term\">Airdrop</span> <span class=\"definition-dash\">&mdash;</span> <span class=\"definition-text\">— Free tokens given to users to promote a project.</span></div></div>"
+      }
+    ]
+  },
+  "Leave_and_Time_Off_Policy": {
+    "intro": "This policy outlines the rules for annual leave, day offs, public holidays, and the process for requesting time off at Vault.",
+    "closing": "To request leave or sick days, please submit a request via the HR Portal. For any questions regarding calculations or accruals, contact <strong>work@vault.ist</strong>.",
+    "sections": [
+      {
+        "number": "01",
+        "title": "Annual Leave (Paid Time Off)",
+        "html": "<ul><li><strong>24 working days</strong> per year.</li><li>Accrued proportionally at <strong>2 working days per month</strong>.</li><li>Working days do not include weekends or public holidays.</li><li>First leave is available after <strong>6 months</strong> of employment. In exceptional cases, earlier leave may be granted with manager approval.</li></ul>"
+      },
+      {
+        "number": "02",
+        "title": "Day Offs (Not Included in Annual Leave)",
+        "html": "<ul><li><strong>10 paid day offs</strong> per year.</li><li>Provided due to the absence of a unified national holiday calendar across our international team.</li><li>Used for national, cultural, or religious holidays personal to the employee.</li><li>Not included in the 24 days of annual leave.</li><li>Require approval from your direct manager.</li><li>Do not carry over to the next year and are not compensated monetarily.</li></ul>"
+      },
+      {
+        "number": "03",
+        "title": "Public Holidays",
+        "html": "<p>National holidays in the employee’s country of residence that do not coincide with the company calendar are taken using annual leave or day offs.</p>"
+      },
+      {
+        "number": "04",
+        "title": "Unused Days",
+        "html": "<ul><li>Unused annual leave and day offs <strong>expire at the end of the calendar year</strong>.</li><li>No monetary compensation is provided for unused days.</li></ul>"
+      },
+      {
+        "number": "05",
+        "title": "Upon Termination",
+        "html": "<p>If more days have been used than accrued at the time of termination, the difference will be deducted from the final salary payment.</p>"
+      },
+      {
+        "number": "06",
+        "title": "Requesting Leave",
+        "html": "<ul><li>Agree on the dates with your direct manager.</li><li>Submit a request through <strong>Vacation | Sick Leave Request</strong> in the HR Portal.</li><li>Update your <strong>Out-of-Office Schedule</strong>.</li></ul>\n<div class=\"callout important\"><strong>Important:</strong> All leave and day offs are granted subject to operational needs. It is recommended to plan your leave in advance (at least 3 months ahead). Failure to submit a timely request does not guarantee that leave will be approved.</div>\n<div class=\"callout tip\"><strong>Note:</strong> If you are employed through a Russian legal entity, leave and days off are governed by the Labor Code of the Russian Federation.</div>"
+      }
+    ]
+  }
+}
