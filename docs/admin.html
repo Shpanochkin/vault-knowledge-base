@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Vault Knowledge Base</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-blue: #0019FF;
+      --neon-blue: #6152F4;
+      --white: #FFFFFF;
+      --black: #191B20;
+      --g50: #FAFAFB;
+      --g100: #F5F6F8;
+      --g200: #E8E9ED;
+      --g300: #D1D3D9;
+      --g500: #8B8D94;
+      --g700: #4A4C52;
+      --g900: #2A2C32;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--g50);
+      color: var(--g900);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Login Screen ── */
+    .login-overlay {
+      position: fixed; inset: 0;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+
+    .login-overlay.hidden { opacity: 0; pointer-events: none; }
+
+    .login-box {
+      text-align: center;
+      max-width: 380px;
+      width: 100%;
+      padding: 0 24px;
+    }
+
+    .login-box .logo svg { height: 36px; width: auto; margin-bottom: 48px; opacity: 0.8; }
+
+    .login-box h2 {
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .login-box p {
+      color: var(--g500);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--g500);
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: var(--white);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus { border-color: var(--deep-blue); }
+    .input-group input::placeholder { color: var(--g500); }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--deep-blue);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .login-error {
+      color: #FF4444;
+      font-size: 13px;
+      margin-top: 12px;
+      min-height: 20px;
+    }
+
+    .login-hint {
+      color: var(--g500);
+      font-size: 12px;
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    .login-hint a { color: var(--neon-blue); }
+
+    /* ── Top Bar ── */
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--g200);
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .topbar-left svg { height: 22px; width: auto; }
+    .topbar-left span { font-size: 13px; color: var(--g500); font-weight: 500; }
+
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+    .btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--deep-blue);
+      color: white;
+    }
+
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--g500);
+      border: 1px solid var(--g200);
+    }
+
+    .btn-ghost:hover { border-color: var(--g300); color: var(--g700); }
+
+    .save-status {
+      font-size: 12px;
+      color: var(--g500);
+      min-width: 100px;
+      text-align: right;
+    }
+
+    .save-status.saved { color: #22C55E; }
+    .save-status.saving { color: var(--neon-blue); }
+    .save-status.error { color: #FF4444; }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 280px;
+      background: var(--white);
+      border-right: 1px solid var(--g200);
+      padding: 24px 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--g500);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0 12px;
+      margin-bottom: 12px;
+    }
+
+    .doc-item {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--g700);
+      margin-bottom: 2px;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .doc-item:hover { background: var(--g100); }
+
+    .doc-item.active {
+      background: rgba(0,25,255,0.06);
+      color: var(--deep-blue);
+      border-color: rgba(0,25,255,0.1);
+    }
+
+    /* ── Editor ── */
+    .editor {
+      flex: 1;
+      padding: 32px 40px;
+      max-width: 860px;
+    }
+
+    .editor-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      color: var(--g500);
+      font-size: 15px;
+    }
+
+    .field-group {
+      margin-bottom: 32px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--g500);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .field-textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 14px 16px;
+      background: var(--white);
+      border: 1px solid var(--g200);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      line-height: 1.7;
+      color: var(--g900);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field-textarea:focus { border-color: var(--deep-blue); }
+
+    .section-card {
+      background: var(--white);
+      border: 1px solid var(--g200);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .section-card:hover { border-color: var(--g300); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .section-num {
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--deep-blue), var(--neon-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      min-width: 40px;
+    }
+
+    .section-title-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--g200);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--g900);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .section-title-input:focus { border-color: var(--deep-blue); }
+
+    .section-body-editor {
+      min-height: 100px;
+      padding: 14px 16px;
+      border: 1px solid var(--g200);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      line-height: 1.7;
+      color: var(--g900);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .section-body-editor:focus { border-color: var(--deep-blue); }
+
+    .section-body-editor ul, .section-body-editor ol { padding-left: 20px; }
+    .section-body-editor li { margin-bottom: 4px; }
+    .section-body-editor p { margin-bottom: 8px; }
+
+    .editor-toolbar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+      padding: 4px;
+      background: var(--g100);
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .toolbar-btn {
+      padding: 6px 10px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--g700);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .toolbar-btn:hover { background: var(--white); color: var(--g900); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .editor { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ═══ LOGIN ═══ -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <div class="logo">
+        <svg width="444" height="103" viewBox="0 0 444 103" fill="none"><path d="M22.17 10.58L5.4 27.28C-1.78 34.43-1.8 46.02 5.35 53.2L35.75 83.7C60.16 108.18 99.89 108.26 124.38 83.87L153.86 54.51C161.06 47.34 161.06 35.71 153.86 28.54L135.3 10.06C127.84 2.63 115.75 2.63 108.3 10.06L78.01 40.22L48.25 10.58C41.05 3.41 29.37 3.41 22.17 10.58Z" fill="white"/><path d="M152.94 50.62C120.35 67.63 89.86 51.44 78.01 40.22L109.37 8.75C116.38 1.72 127.81 1.79 134.74 8.89L155.12 29.79C161.29 36.11 160.78 46.53 152.94 50.62Z" fill="#DDDFE4"/><path d="M236.03 82.36C235.51 83.73 234.2 84.63 232.73 84.63H219.75L195.64 31.39C194.7 29.07 196.4 26.54 198.9 26.54H210.39C211.87 26.54 213.18 27.45 213.7 28.83L224.5 58.01C225.07 59.57 227.28 59.54 227.81 57.97L237.73 28.92C238.21 27.49 239.55 26.54 241.06 26.54H252.04C254.51 26.54 256.21 29 255.34 31.3L236.03 82.36Z" fill="white"/><path d="M385.32 84.63C383.37 84.63 381.8 83.05 381.8 81.11V3.52C381.8 1.58 383.37 0 385.32 0H395.95C397.89 0 399.47 1.58 399.47 3.52V81.11C399.47 83.05 397.89 84.63 395.95 84.63H385.32Z" fill="white"/></svg>
+      </div>
+      <h2>Knowledge Base Admin</h2>
+      <p>Edit policy documents for the Vault team</p>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="pwdInput" placeholder="Enter admin password" autofocus>
+      </div>
+      <div class="input-group">
+        <label>GitHub Token <span style="font-weight:400;color:var(--g500)">(repo scope)</span></label>
+        <input type="password" id="tokenInput" placeholder="ghp_...">
+      </div>
+      <button class="login-btn" id="loginBtn">Sign In</button>
+      <div class="login-error" id="loginError"></div>
+      <div class="login-hint">
+        Token is stored locally in your browser.<br>
+        Generate at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> (repo scope).
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ APP ═══ -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <svg width="444" height="103" viewBox="0 0 444 103" fill="none"><path d="M22.17 10.58L5.4 27.28C-1.78 34.43-1.8 46.02 5.35 53.2L35.75 83.7C60.16 108.18 99.89 108.26 124.38 83.87L153.86 54.51C161.06 47.34 161.06 35.71 153.86 28.54L135.3 10.06C127.84 2.63 115.75 2.63 108.3 10.06L78.01 40.22L48.25 10.58C41.05 3.41 29.37 3.41 22.17 10.58Z" fill="#0019FF"/><path d="M152.94 50.62C120.35 67.63 89.86 51.44 78.01 40.22L109.37 8.75C116.38 1.72 127.81 1.79 134.74 8.89L155.12 29.79C161.29 36.11 160.78 46.53 152.94 50.62Z" fill="#0117D7"/><path d="M236.03 82.36L216.49 82.44L195.64 31.39C194.7 29.07 196.4 26.54 198.9 26.54H210.39C211.87 26.54 213.18 27.45 213.7 28.83L224.5 58.01C225.07 59.57 227.28 59.54 227.81 57.97L237.73 28.92C238.21 27.49 239.55 26.54 241.06 26.54H252.04C254.51 26.54 256.21 29 255.34 31.3L236.03 82.36Z" fill="#0019FF"/><path d="M385.32 84.63C383.37 84.63 381.8 83.05 381.8 81.11V3.52C381.8 1.58 383.37 0 385.32 0H395.95C397.89 0 399.47 1.58 399.47 3.52V81.11C399.47 83.05 397.89 84.63 395.95 84.63H385.32Z" fill="#0019FF"/></svg>
+      <span>/ Admin</span>
+    </div>
+    <div class="topbar-right">
+      <span class="save-status" id="saveStatus"></span>
+      <button class="btn btn-ghost" id="previewBtn" onclick="window.open('index.html')">View Site</button>
+      <button class="btn btn-primary" id="saveBtn" disabled>Save & Deploy</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="sidebar-label">Documents</div>
+      <div id="docList"></div>
+    </nav>
+    <main class="editor" id="editor">
+      <div class="editor-empty">Select a document from the sidebar</div>
+    </main>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════
+    // CONFIG
+    // ═══════════════════════════════════
+    const REPO = 'Shpanochkin/vault-knowledge-base';
+    const CONTENT_PATH = 'docs/content.json';
+    const PWD_HASH = '1a4f706ba90f5f0a9bd96901f8db59ee5ee280a24f195ea0182ed7b835d62894';
+
+    let ghToken = localStorage.getItem('vault_gh_token') || '';
+    let contentData = null;
+    let currentDoc = null;
+    let dirty = false;
+
+    // ═══════════════════════════════════
+    // AUTH
+    // ═══════════════════════════════════
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    const loginOverlay = document.getElementById('loginOverlay');
+    const loginBtn = document.getElementById('loginBtn');
+    const pwdInput = document.getElementById('pwdInput');
+    const tokenInput = document.getElementById('tokenInput');
+    const loginError = document.getElementById('loginError');
+
+    // Pre-fill token if saved
+    tokenInput.value = ghToken;
+
+    loginBtn.addEventListener('click', doLogin);
+    pwdInput.addEventListener('keydown', e => { if (e.key === 'Enter') tokenInput.focus(); });
+    tokenInput.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+    async function doLogin() {
+      loginError.textContent = '';
+      const hash = await sha256(pwdInput.value);
+      if (hash !== PWD_HASH) {
+        loginError.textContent = 'Wrong password';
+        return;
+      }
+      if (!tokenInput.value.trim()) {
+        loginError.textContent = 'GitHub token is required';
+        return;
+      }
+      ghToken = tokenInput.value.trim();
+      localStorage.setItem('vault_gh_token', ghToken);
+      loginOverlay.classList.add('hidden');
+      loadContent();
+    }
+
+    // Auto-login if token saved
+    if (ghToken) {
+      tokenInput.value = ghToken;
+    }
+
+    // ═══════════════════════════════════
+    // LOAD CONTENT
+    // ═══════════════════════════════════
+    async function loadContent() {
+      try {
+        setStatus('Loading...', 'saving');
+        const res = await fetch('content.json?t=' + Date.now());
+        if (!res.ok) throw new Error('Failed to load content.json');
+        contentData = await res.json();
+        renderDocList();
+        setStatus('Loaded', 'saved');
+      } catch (e) {
+        setStatus('Error loading: ' + e.message, 'error');
+      }
+    }
+
+    // ═══════════════════════════════════
+    // SIDEBAR
+    // ═══════════════════════════════════
+    const DOC_LABELS = {
+      'Code_of_Conduct': 'Code of Conduct',
+      'Communication_Guidelines': 'Communication Guidelines',
+      'Equipment_Policy': 'Equipment Policy',
+      'Salary_Invoice_Submission': 'Salary Invoice Submission',
+      'Vault_Business_Glossary': 'Business Glossary',
+      'Leave_and_Time_Off_Policy': 'Leave & Time Off Policy'
+    };
+
+    function renderDocList() {
+      const list = document.getElementById('docList');
+      list.innerHTML = '';
+      for (const id of Object.keys(contentData)) {
+        const el = document.createElement('div');
+        el.className = 'doc-item' + (id === currentDoc ? ' active' : '');
+        el.textContent = DOC_LABELS[id] || id;
+        el.onclick = () => selectDoc(id);
+        list.appendChild(el);
+      }
+    }
+
+    function selectDoc(id) {
+      currentDoc = id;
+      renderDocList();
+      renderEditor();
+    }
+
+    // ═══════════════════════════════════
+    // EDITOR
+    // ═══════════════════════════════════
+    function renderEditor() {
+      const editor = document.getElementById('editor');
+      const doc = contentData[currentDoc];
+      if (!doc) return;
+
+      let html = '';
+
+      // Intro
+      html += `
+        <div class="field-group">
+          <div class="field-label">Introduction</div>
+          <textarea class="field-textarea" data-field="intro" oninput="markDirty()">${escHtml(doc.intro)}</textarea>
+        </div>`;
+
+      // Sections
+      doc.sections.forEach((s, i) => {
+        html += `
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-num">${s.number}</div>
+              <input class="section-title-input" value="${escAttr(s.title)}" data-field="section-title-${i}" oninput="markDirty()">
+            </div>
+            <div class="editor-toolbar">
+              <button class="toolbar-btn" onclick="execCmd('bold')" title="Bold"><b>B</b></button>
+              <button class="toolbar-btn" onclick="execCmd('insertUnorderedList')" title="Bullet list">List</button>
+              <button class="toolbar-btn" onclick="execCmd('insertOrderedList')" title="Numbered list">1.2.3</button>
+            </div>
+            <div class="section-body-editor" contenteditable="true" data-field="section-html-${i}" oninput="markDirty()">${s.html}</div>
+          </div>`;
+      });
+
+      // Closing
+      if (doc.closing) {
+        html += `
+          <div class="field-group">
+            <div class="field-label">Closing Note</div>
+            <textarea class="field-textarea" data-field="closing" oninput="markDirty()">${escHtml(doc.closing)}</textarea>
+          </div>`;
+      }
+
+      editor.innerHTML = html;
+    }
+
+    function escHtml(s) {
+      return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function escAttr(s) {
+      return (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    }
+
+    function execCmd(cmd) {
+      document.execCommand(cmd, false, null);
+    }
+
+    function markDirty() {
+      dirty = true;
+      document.getElementById('saveBtn').disabled = false;
+      setStatus('Unsaved changes', '');
+    }
+
+    // ═══════════════════════════════════
+    // SAVE
+    // ═══════════════════════════════════
+    document.getElementById('saveBtn').addEventListener('click', saveContent);
+
+    async function saveContent() {
+      if (!dirty || !currentDoc) return;
+
+      // Collect values from editor
+      const doc = contentData[currentDoc];
+
+      const introEl = document.querySelector('[data-field="intro"]');
+      if (introEl) doc.intro = introEl.value;
+
+      const closingEl = document.querySelector('[data-field="closing"]');
+      if (closingEl) doc.closing = closingEl.value;
+
+      doc.sections.forEach((s, i) => {
+        const titleEl = document.querySelector(`[data-field="section-title-${i}"]`);
+        const htmlEl = document.querySelector(`[data-field="section-html-${i}"]`);
+        if (titleEl) s.title = titleEl.value;
+        if (htmlEl) s.html = htmlEl.innerHTML;
+      });
+
+      // Save to GitHub
+      try {
+        setStatus('Saving...', 'saving');
+        document.getElementById('saveBtn').disabled = true;
+
+        // Get current file SHA
+        const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${CONTENT_PATH}`, {
+          headers: { 'Authorization': `Bearer ${ghToken}`, 'Accept': 'application/vnd.github.v3+json' }
+        });
+
+        let sha = null;
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
+        }
+
+        // Commit updated content
+        const body = {
+          message: `Update ${DOC_LABELS[currentDoc] || currentDoc} content`,
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(contentData, null, 2)))),
+          branch: 'main'
+        };
+        if (sha) body.sha = sha;
+
+        const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${CONTENT_PATH}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${ghToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+
+        if (!putRes.ok) {
+          const err = await putRes.json();
+          throw new Error(err.message || 'GitHub API error');
+        }
+
+        dirty = false;
+        setStatus('Saved & deployed', 'saved');
+        setTimeout(() => setStatus('', ''), 3000);
+      } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+        document.getElementById('saveBtn').disabled = false;
+      }
+    }
+
+    function setStatus(text, cls) {
+      const el = document.getElementById('saveStatus');
+      el.textContent = text;
+      el.className = 'save-status ' + (cls || '');
+    }
+
+    // Keyboard shortcut
+    document.addEventListener('keydown', e => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        saveContent();
+      }
+    });
+  </script>
+</body>
+</html>
