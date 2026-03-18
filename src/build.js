@@ -255,7 +255,69 @@ function generateHTML(doc) {
       margin-bottom: 40px;
     }
 
+    .hero-top-row .logo { text-decoration: none; }
     .hero-top-row .logo svg { height: 32px; width: auto; display: block; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .back-btn svg {
+      width: 16px; height: 16px;
+      stroke: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    .back-btn:hover svg { transform: translateX(-3px); }
+
+    .footer-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      border: 1px solid var(--g200);
+      background: var(--g100);
+      color: var(--g700);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .footer-back:hover {
+      background: rgba(0,25,255,0.05);
+      border-color: rgba(0,25,255,0.2);
+      color: var(--deep-blue);
+    }
+
+    .footer-back svg {
+      width: 16px; height: 16px;
+      stroke: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    .footer-back:hover svg { transform: translateX(-3px); }
 
     .hero-spacer { flex: 1; }
 
@@ -701,8 +763,8 @@ function generateHTML(doc) {
 
     <div class="hero-inner">
       <div class="hero-top-row">
-        <div class="logo">${LOGO_WHITE}</div>
-        <div class="hero-icon">${doc.icon}</div>
+        <a href="index.html" class="logo">${LOGO_WHITE}</a>
+        <a href="index.html" class="back-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All Documents</a>
       </div>
       <div class="hero-spacer"></div>
       <div class="hero-content">
@@ -733,6 +795,9 @@ function generateHTML(doc) {
     ${doc.intro ? `<div class="intro-text">${doc.intro}</div>` : ''}
     ${sectionsHTML}
     ${doc.closing ? `<div class="callout closing">${doc.closing}</div>` : ''}
+    <div style="text-align:center;margin-top:48px;">
+      <a href="index.html" class="footer-back"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to All Documents</a>
+    </div>
   </main>
 
   <!-- ▌ FOOTER ▌ -->
