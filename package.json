@@ -5,7 +5,9 @@
   "scripts": {
     "build": "node src/build.js",
     "html": "node src/build.js --html-only",
-    "pdf": "node src/build.js --pdf-only"
+    "pdf": "node src/build.js --pdf-only",
+    "banners": "node src/build-banners.js",
+    "icons": "node src/build-icons.js"
   },
   "dependencies": {
     "puppeteer": "^24.0.0"
