@@ -105,6 +105,8 @@ function renderContent(items) {
         return `<p>${item.html || esc(item.text)}</p>`;
       case 'list':
         return `<ul>${item.items.map(li => `<li>${li}</li>`).join('')}</ul>`;
+      case 'olist':
+        return `<ol class="numbered-list">${item.items.map(li => `<li>${li}</li>`).join('')}</ol>`;
       case 'callout':
         return `<div class="callout ${item.variant || 'important'}">${item.html || esc(item.text)}</div>`;
       case 'table':
@@ -112,8 +114,10 @@ function renderContent(items) {
           <thead><tr>${item.headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>
           <tbody>${item.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>
         </table></div>`;
-      case 'subsection':
-        return `<div class="subsection"><h3>${item.title}</h3>${renderContent(item.content)}</div>`;
+      case 'subsection': {
+        const subNum = item.number ? `<span class="subsection-number">${item.number}.</span> ` : '';
+        return `<div class="subsection"><h3>${subNum}${item.title}</h3>${renderContent(item.content)}</div>`;
+      }
       case 'definitions':
         return `<div class="definitions-grid">${item.items.map(d =>
           `<div class="definition"><span class="definition-term">${d.term}</span> <span class="definition-dash">&mdash;</span> <span class="definition-text">${d.desc}</span></div>`
@@ -144,8 +148,23 @@ function generateHTML(doc) {
     </div>
   `).join('\n');
 
+  const bodyClass = doc.style === 'strict' ? 'strict' : '';
+  const signatureHTML = doc.signatureBlock ? `
+  <section class="signature-block">
+    <div class="signature-stamp">${doc.signatureBlock.stampLabel || 'Approved'}</div>
+    ${doc.signatureBlock.intro ? `<div class="signature-meta">${doc.signatureBlock.intro}</div>` : ''}
+    <div class="signature-line-wrap">
+      <div class="signature-line"></div>
+      <div class="signature-name">${doc.signatureBlock.name}</div>
+      <div class="signature-title">${doc.signatureBlock.title}</div>
+    </div>
+    <div class="signature-date">${doc.signatureBlock.dateLabel || 'Date'}: ${doc.signatureBlock.date}</div>
+    ${doc.signatureBlock.method ? `<div class="signature-method">${doc.signatureBlock.method}</div>` : ''}
+  </section>` : '';
+  const lang = doc.lang || 'en';
+
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -700,6 +719,167 @@ function generateHTML(doc) {
       font-weight: 400;
     }
 
+    /* ── Numbered list (ol) ── */
+    .section-body ol.numbered-list {
+      list-style: decimal;
+      margin: 14px 0 14px 24px;
+      padding-left: 8px;
+    }
+    .section-body ol.numbered-list li {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--g700);
+      padding-left: 6px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Subsection numbering ── */
+    .subsection-number {
+      font-weight: 700;
+      color: var(--deep-blue);
+      margin-right: 4px;
+    }
+
+    /* ── Strict body mode (regulations / formal documents) ── */
+    body.strict .content { max-width: 760px; padding-top: 56px; }
+    body.strict .intro-text {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+    }
+    body.strict .section { margin-bottom: 36px; }
+    body.strict .section-header {
+      display: block;
+      align-items: initial;
+      gap: 0;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--g200);
+    }
+    body.strict .section-number {
+      display: inline;
+      font-size: 22px;
+      font-weight: 800;
+      background: none !important;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: var(--g900);
+      background-clip: initial;
+      color: var(--g900);
+      letter-spacing: -0.01em;
+      min-width: 0;
+      margin-right: 12px;
+      line-height: 1.3;
+    }
+    body.strict .section h2 {
+      display: inline;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    body.strict .section-body { padding-left: 0; }
+    body.strict .section-body p,
+    body.strict .section-body ul li,
+    body.strict .section-body ol.numbered-list li {
+      font-size: 14.5px;
+      line-height: 1.7;
+    }
+    body.strict .subsection {
+      background: none;
+      border-left: none;
+      border-radius: 0;
+      padding: 14px 0 0 0;
+      margin: 12px 0 14px 0;
+    }
+    body.strict .subsection:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    body.strict .subsection h3 {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--g900);
+      margin-bottom: 8px;
+      letter-spacing: 0;
+    }
+    body.strict .subsection p { font-size: 14.5px; }
+    body.strict .subsection ul li { font-size: 14.5px; }
+    body.strict .callout {
+      padding: 14px 18px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+
+    /* ── Signature block (PDF only) ── */
+    .signature-block {
+      display: none;
+      page-break-before: always;
+      break-before: page;
+      padding: 80px 60px 60px;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--g900);
+      background: var(--white);
+    }
+    body.pdf-mode .signature-block { display: block; }
+    @media print { .signature-block { display: block; } }
+
+    .signature-stamp {
+      display: inline-block;
+      margin: 0 auto 56px;
+      padding: 18px 64px;
+      border: 3px double var(--deep-blue);
+      color: var(--deep-blue);
+      font-weight: 800;
+      letter-spacing: 8px;
+      font-size: 22px;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      border-radius: 6px;
+    }
+    .signature-meta {
+      margin-bottom: 60px;
+      color: var(--g700);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .signature-meta strong { color: var(--g900); font-weight: 600; }
+    .signature-line-wrap {
+      display: inline-block;
+      text-align: center;
+      min-width: 320px;
+    }
+    .signature-line {
+      width: 100%;
+      border-bottom: 1px solid var(--g700);
+      height: 56px;
+      margin-bottom: 10px;
+    }
+    .signature-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--g900);
+    }
+    .signature-title {
+      color: var(--g500);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .signature-date {
+      margin-top: 28px;
+      font-size: 14px;
+      color: var(--g700);
+    }
+    .signature-method {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--g500);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
     /* ── PDF Mode ── */
     body.pdf-mode .progress-bar,
     body.pdf-mode .scroll-hint,
@@ -752,7 +932,7 @@ function generateHTML(doc) {
     }
   </style>
 </head>
-<body>
+<body class="${bodyClass}">
   <div class="progress-bar" id="progressBar"></div>
 
   <!-- ▌ HERO ▌ -->
@@ -764,7 +944,7 @@ function generateHTML(doc) {
     <div class="hero-inner">
       <div class="hero-top-row">
         <a href="index.html" class="logo">${LOGO_WHITE}</a>
-        <a href="index.html" class="back-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All Documents</a>
+        <a href="${doc.backHref || 'index.html'}" class="back-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>${doc.backLabelShort || 'All Documents'}</a>
       </div>
       <div class="hero-spacer"></div>
       <div class="hero-content">
@@ -796,9 +976,11 @@ function generateHTML(doc) {
     ${sectionsHTML}
     ${doc.closing ? `<div class="callout closing">${doc.closing}</div>` : ''}
     <div style="text-align:center;margin-top:48px;">
-      <a href="index.html" class="footer-back"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to All Documents</a>
+      <a href="${doc.backHref || 'index.html'}" class="footer-back"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>${doc.backLabel || 'Back to All Documents'}</a>
     </div>
   </main>
+
+  ${signatureHTML}
 
   <!-- ▌ FOOTER ▌ -->
   <footer class="footer">
@@ -1329,6 +1511,383 @@ const documents = [
   },
 
   // ────────────────────────────────────────
+  // 7. SALES — ZOHO ECOSYSTEM USAGE REGULATION
+  //    (Commercial Department, strict mode)
+  // ────────────────────────────────────────
+  {
+    id: 'Sales_Zoho_Regulation',
+    title: 'Zoho Ecosystem Usage Regulation — Sales',
+    heroTitle: 'Zoho Ecosystem<br>Usage Regulation',
+    badge: 'Commercial Department · Mandatory',
+    subtitle: 'Vault Group — Mandatory rules for the Sales Department on using Zoho CRM, Cliq, Voice, Desk, People, and Calendar.',
+    icon: ICONS.shield,
+    seed: 15,
+    style: 'strict',
+    department: 'commercial',
+    lang: 'en',
+    backHref: 'commercial-department.html',
+    backLabel: 'Back to Commercial Department',
+    backLabelShort: 'Commercial Department',
+    intro: 'This Regulation establishes mandatory rules for the use of the Zoho ecosystem (the "Systems") by employees of the Sales Department in the performance of their duties. Violation of this Regulation triggers disciplinary action in accordance with Section 14.',
+    signatureBlock: {
+      stampLabel: 'Approved',
+      intro: 'Issued and approved by the Chief Commercial Operations Officer of Vault Group.',
+      name: 'Sviatoslav Shpanochkin',
+      title: 'Chief Commercial Operations Officer',
+      date: 'May 1, 2026',
+      dateLabel: 'Effective date',
+      method: 'Signed via Zoho Sign'
+    },
+    sections: [
+      {
+        number: '01', title: 'General Provisions',
+        content: [
+          { type: 'subsection', number: '1.1', title: 'Purpose', content: [
+            { type: 'p', text: 'This Regulation establishes mandatory rules for the use of the Zoho ecosystem (the "Systems") by employees of the Sales Department in the performance of their duties.' }
+          ]},
+          { type: 'subsection', number: '1.2', title: 'Scope', content: [
+            { type: 'p', text: 'This Regulation applies to all employees of the Sales Department, including Sales Managers, Business Developers, Partnerships Associates, Marketing Growth and Lead Generation Managers, as well as interns and temporarily engaged contractors.' }
+          ]},
+          { type: 'subsection', number: '1.3', title: 'Principles', content: [
+            { type: 'list', items: [
+              '<strong>Single source of truth — Zoho CRM.</strong> Any client information not recorded in CRM is considered to not exist.',
+              '<strong>Transparency</strong> — every action with a client is reflected in the system and accessible to the supervisor.',
+              '<strong>Cadence and rhythm</strong> — work is performed as a continuous task cycle with no blind spots.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.4', title: 'Liability', content: [
+            { type: 'p', text: 'Violation of this Regulation triggers disciplinary action in accordance with Section 14.' }
+          ]}
+        ]
+      },
+      {
+        number: '02', title: 'Employee Profile and Onboarding',
+        content: [
+          { type: 'subsection', number: '2.1', title: 'Mandatory Setup', content: [
+            { type: 'p', text: 'Before starting client work, each employee must:' },
+            { type: 'list', items: [
+              'Connect their corporate Gmail mailbox to Zoho CRM.',
+              'Connect their work calendar to Zoho Calendar.',
+              'Set a current photo in their Zoho CRM profile (a business portrait, face clearly visible).',
+              'Complete their Zoho CRM profile: full name, position, work phone, messengers (Cliq), short bio if applicable.',
+              'Install and authorize Zoho CRM, Cliq, and Voice on their work device and/or browser.'
+            ]}
+          ]},
+          { type: 'subsection', number: '2.2', title: 'Check-in and Check-out', content: [
+            { type: 'p', text: 'Each employee must check in via Zoho Cliq at the start of the workday and check out at its end. Failure to check in without prior approval from the supervisor is treated as a late arrival or no-show.' }
+          ]}
+        ]
+      },
+      {
+        number: '03', title: 'CRM Entity Hierarchy',
+        content: [
+          { type: 'subsection', number: '3.1', title: '“Account is the Root” Principle', content: [
+            { type: 'list', items: [
+              '<strong>Account</strong> — the root entity.',
+              '<strong>Contact</strong> — belongs to an Account.',
+              '<strong>Deal</strong> — belongs to an Account; <strong>exactly one</strong> Contact is attached to each Deal as the primary Contact for that Deal.'
+            ]}
+          ]},
+          { type: 'subsection', number: '3.2', title: 'Lead and Lead Conversion', content: [
+            { type: 'olist', items: [
+              'Every initial prospect is first recorded as a Lead.',
+              'A Lead is converted <strong>only via the Blueprint</strong> in the Lead record.',
+              'Conversion creates three entities at once: Account + Contact + Deal.',
+              'It is prohibited to manually create an Account, Contact, or Deal bypassing the Lead Blueprint when the prospect originated as a Lead.'
+            ]}
+          ]},
+          { type: 'subsection', number: '3.3', title: 'Adding Additional Contacts', content: [
+            { type: 'olist', items: [
+              'If an Account already exists and a new Contact must be added — the Contact is created <strong>only from the Account record</strong> (Related → Contacts).',
+              'A duplicate check by email and phone is mandatory before creation.',
+              'Creating a Contact "standalone" via the Contacts module is prohibited.'
+            ]}
+          ]},
+          { type: 'subsection', number: '3.4', title: 'Adding Additional Deals', content: [
+            { type: 'olist', items: [
+              'A new Deal under an existing Account is created <strong>only from the Account record</strong> (Related → Deals).',
+              'A Contact must be attached to the Deal.',
+              'Creating a Deal "standalone" via the Deals module is prohibited.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '04', title: 'Working with Tasks',
+        content: [
+          { type: 'subsection', number: '4.1', title: 'The Task Cycle', content: [
+            { type: 'p', text: 'Each employee’s work follows a continuous cycle:' },
+            { type: 'olist', items: [
+              '<strong>Take the task into work.</strong>',
+              '<strong>Perform the action</strong> — call, email, meeting, etc.',
+              '<strong>Close the task with a result</strong> — the Description field must be filled: what happened, what was agreed, the next step.',
+              '<strong>Create the next task</strong> — if work on the Deal is not complete, the next task is created with a specific date and action.'
+            ]}
+          ]},
+          { type: 'subsection', number: '4.2', title: 'No Empty Closures', content: [
+            { type: 'p', text: 'Closing a task without a result is prohibited. A description such as "ok", "done", "-", "." is treated as non-completion.' }
+          ]},
+          { type: 'subsection', number: '4.3', title: 'No Date Postponement', content: [
+            { type: 'olist', items: [
+              'Postponing a task’s due date is prohibited. Any rescheduling has a reason — and that reason becomes the result of closing the current task (e.g. "client asked to revisit in a week").',
+              'A <strong>new</strong> task is created for the new date. The previous task is closed with the postponement reason recorded.'
+            ]}
+          ]},
+          { type: 'subsection', number: '4.4', title: 'Daily "Set Next Step" Task', content: [
+            { type: 'olist', items: [
+              'Each morning, an automated process creates a "Set Next Step" task for the employee on every Deal that has no open active task.',
+              'A "Set Next Step" task must be closed within the same day.',
+              '"Set Next Step" can only be closed after a real next task on that Deal has been created.'
+            ]}
+          ]},
+          { type: 'subsection', number: '4.5', title: 'Every Active Deal Has an Open Task', content: [
+            { type: 'p', text: 'Every Deal in an active stage (not Closed Won / Closed Lost) must have at least one open task. A Deal without an open task for the current or next workday is considered abandoned and recorded as a violation.' }
+          ]},
+          { type: 'subsection', number: '4.6', title: 'Tasks Live on the Deal', content: [
+            { type: 'p', text: 'Tasks, events, calls, and emails are created <strong>strictly inside the Deal</strong>. Creating activities at the Contact or Account level is prohibited (the only exception is pre-sales activity before a Deal exists, agreed with the supervisor).' }
+          ]},
+          { type: 'subsection', number: '4.7', title: 'Minimum Daily Output', content: [
+            { type: 'olist', items: [
+              'The minimum number of tasks completed per day is set in the KPI regulation for the relevant role.',
+              'A day with less than 30% of the daily task quota completed is not counted in the calculation of worked days (unless agreed with the supervisor — sick leave, training, business trip, etc.).'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '05', title: 'Client Communication Channels',
+        content: [
+          { type: 'subsection', number: '5.1', title: 'Voice Calls', content: [
+            { type: 'olist', items: [
+              'All inbound and outbound calls with clients are placed <strong>only through Zoho Voice</strong>.',
+              'Using a personal mobile phone for client voice calls is prohibited.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.2', title: 'WhatsApp', content: [
+            { type: 'olist', items: [
+              'WhatsApp communication is conducted <strong>only through the WhatsApp channel embedded in Zoho CRM</strong>.',
+              'Conducting client WhatsApp communication from a personal account is prohibited.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.3', title: 'Email', content: [
+            { type: 'olist', items: [
+              'The corporate Gmail mailbox is connected to CRM.',
+              'All Deal-related correspondence must land in the Deal record. The Email field on the Deal must be filled correctly — this is a hard requirement for synchronization.',
+              'Communicating with the client from a personal mailbox or from any mailbox not connected to CRM is prohibited.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.4', title: 'Telegram, LinkedIn, and Other Non-integrated Channels', content: [
+            { type: 'olist', items: [
+              'Such channels may be used only when no alternative is available.',
+              'Every meaningful exchange in a non-integrated channel must be <strong>copied into the Deal Notes</strong> with the channel, date, and a brief summary.',
+              'Documents received through such channels are attached to the Deal Attachments.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '06', title: 'Data Hygiene',
+        content: [
+          { type: 'subsection', number: '6.1', title: 'Naming Conventions for Proper Nouns', content: [
+            { type: 'olist', items: [
+              'Names, surnames, company names, product names, city names, etc. are written <strong>in English</strong> (if the original is in Latin script or has a commonly used Latin transliteration), starting with a capital letter unless the official spelling explicitly requires lowercase (<code>iPhone</code>, <code>eBay</code>, <code>dYdX</code>).',
+              'Writing names in all caps, all lowercase, or in arbitrary transliteration is prohibited.',
+              'Hyphenated surnames are written with a hyphen and no spaces: <code>Smith-Jones</code>.',
+              '<strong>Source of truth — the questionnaire completed by the client.</strong> Once a completed questionnaire is received, the company name and the contact’s first/last name are taken in the spelling provided by the client — provided there are no obvious typos and no contradiction with a precisely known spelling (e.g. the company’s official LinkedIn page).'
+            ]}
+          ]},
+          { type: 'subsection', number: '6.2', title: 'Data Formats', content: [
+            { type: 'list', items: [
+              'Phone numbers — international format <code>+CountryCode Number</code> (e.g. <code>+1 415 555 0123</code>).',
+              'Emails — lowercase.',
+              'Dates — the CRM format (use the dropdown; free-form manual input is prohibited where the field does not require it).',
+              'Amounts — in US dollars (USD).'
+            ]}
+          ]},
+          { type: 'subsection', number: '6.3', title: 'Field Completeness', content: [
+            { type: 'olist', items: [
+              'Fields mandatory for the role must be filled at 100% before the Deal is moved to the next Pipeline stage.',
+              'The list of mandatory fields per stage is defined in the Layout of the relevant Pipeline.',
+              'The fields Industry, Country, Source, Owner, Stage, and Closing Date are mandatory in every case.'
+            ]}
+          ]},
+          { type: 'subsection', number: '6.4', title: 'Status Accuracy', content: [
+            { type: 'p', text: 'The Deal Stage, Contact status, and Lead status must reflect actual reality. A Deal is moved to the next stage only when there is documented evidence (an email, a call recording, a meeting note).' }
+          ]},
+          { type: 'subsection', number: '6.5', title: 'Duplicates', content: [
+            { type: 'p', text: 'A duplicate check by email, phone, and website domain is mandatory before creating any entity. If a duplicate is found, work continues on the existing record.' }
+          ]}
+        ]
+      },
+      {
+        number: '07', title: 'Documents and Products on the Deal',
+        content: [
+          { type: 'subsection', number: '7.1', title: 'Documents', content: [
+            { type: 'olist', items: [
+              'All documents received from the client (NDA, contracts, decks, completed questionnaires, screenshots) are attached to the Deal <strong>Attachments</strong>.',
+              'The file name must include the document type and the date: <code>NDA_2026-05-01.pdf</code>, <code>Questionnaire_2026-05-01.pdf</code>.'
+            ]}
+          ]},
+          { type: 'subsection', number: '7.2', title: 'Products and Deal Amount', content: [
+            { type: 'olist', items: [
+              'Once the client has indicated the chosen product/plan, the product is added to the <strong>Products</strong> section of the Deal.',
+              'After products are added or changed, the employee must press the <strong>Recalculate Amount</strong> button to recompute the Deal amount.',
+              'A Deal Amount that does not match the attached products is considered an error and must be fixed immediately.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '08', title: 'Owner Reassignment',
+        content: [
+          { type: 'subsection', number: '8.1', title: 'Cascade Principle', content: [
+            { type: 'p', text: 'Owner reassignment is performed <strong>only from the Account record</strong>. After the Account Owner changes, the Owner is updated on all related Contacts and Deals.' }
+          ]},
+          { type: 'subsection', number: '8.2', title: 'Notification', content: [
+            { type: 'p', text: 'An Owner change is accompanied by:' },
+            { type: 'list', items: [
+              'A Note on the Account with the handover date, the reason, and confirmation from both employees.',
+              'A notification in the relevant Zoho Cliq channel.',
+              'A handover of open tasks: the previous Owner closes their tasks with results; the new Owner creates their own.'
+            ]}
+          ]},
+          { type: 'subsection', number: '8.3', title: 'No "Silent" Handover', content: [
+            { type: 'p', text: 'Changing the Owner of a Deal or Contact bypassing the Account is prohibited; changing the Owner without notification and a written record is prohibited.' }
+          ]}
+        ]
+      },
+      {
+        number: '09', title: 'Communication SLAs',
+        content: [
+          { type: 'subsection', number: '9.1', title: 'Inbound Calls', content: [
+            { type: 'olist', items: [
+              'During working hours, the employee must answer an incoming client call via Zoho Voice immediately.',
+              'A missed call is acceptable only when one of the following holds: the employee’s calendar shows a confirmed meeting at that time; or the Zoho Voice logs show the employee was on another active call at the moment of the miss.',
+              'Any other missed call is recorded as an SLA violation.',
+              'The employee must call back within 15 minutes of becoming available.'
+            ]}
+          ]},
+          { type: 'subsection', number: '9.2', title: 'Cliq Messages', content: [
+            { type: 'olist', items: [
+              'A work message in Zoho Cliq must be acknowledged <strong>within one hour</strong> during working hours.',
+              'Ignoring <code>@user</code>, <code>@channel</code>, mentions, and reactions is prohibited.',
+              'The detailed Cliq usage rules are defined in a separate regulation.'
+            ]}
+          ]},
+          { type: 'subsection', number: '9.3', title: 'Client Email', content: [
+            { type: 'p', text: 'The client must receive an email reply within 4 hours during working hours. If a substantive reply is not yet possible, an interim message must be sent stating the deadline for the full reply.' }
+          ]}
+        ]
+      },
+      {
+        number: '10', title: 'Technical Requests (Bugs, Improvements, Suggestions)',
+        content: [
+          { type: 'subsection', number: '10.1', title: 'The Only Channel Is Zoho Desk', content: [
+            { type: 'olist', items: [
+              'Every request regarding a system bug, an improvement, or a process suggestion must be filed <strong>strictly as a Zoho Desk ticket</strong>.',
+              'A request via Cliq, email, voice, or any other channel is not considered accepted into work until a ticket is created.',
+              'The ticket must include: title (a short summary); type (Bug / Feature Request / Suggestion); description (context, steps to reproduce, expected vs. actual); a screenshot or a recording link.'
+            ]}
+          ]},
+          { type: 'subsection', number: '10.2', title: 'No Duplicates', content: [
+            { type: 'p', text: 'Creating duplicate tickets, bypassing the ticket channel, or escalating to chat before a ticket reply is received is prohibited.' }
+          ]}
+        ]
+      },
+      {
+        number: '11', title: 'Notifications',
+        content: [
+          { type: 'subsection', number: '11.1', title: 'Cliq', content: [
+            { type: 'olist', items: [
+              'The employee must monitor notifications in every Cliq channel they are a member of.',
+              'Member of a channel = obliged to read it. Muting a channel is allowed only with the supervisor’s approval.',
+              'Leaving work channels in Cliq without approval is prohibited.'
+            ]}
+          ]},
+          { type: 'subsection', number: '11.2', title: 'CRM', content: [
+            { type: 'p', text: 'CRM notifications (overdue tasks, mentions, approval requests) are processed at the start of the workday and continuously throughout the day as they arrive.' }
+          ]}
+        ]
+      },
+      {
+        number: '12', title: 'Prohibitions (Consolidated List)',
+        content: [
+          { type: 'p', text: 'The following is prohibited:' },
+          { type: 'olist', items: [
+            'Any client communication outside the Zoho ecosystem without copying it into CRM.',
+            'Creating an Account, Contact, or Deal outside the established hierarchy (see Section 3).',
+            'Closing tasks without a result.',
+            'Postponing a task’s due date (instead, close the current one with a result and create a new one).',
+            'Leaving active Deals without an open task.',
+            'Using a personal phone, personal WhatsApp, or personal mailbox for client communication.',
+            'Changing the Owner bypassing the Account record.',
+            'Creating activities (tasks, calls, emails, meetings) outside the Deal.',
+            'Ignoring incoming calls and messages outside the regulated grounds.',
+            'Filing improvement/bug requests outside Zoho Desk.',
+            'Storing client documents outside the Deal Attachments (on a personal PC, in Telegram, on a USB drive).'
+          ]}
+        ]
+      },
+      {
+        number: '13', title: 'Monitoring and Audit',
+        content: [
+          { type: 'subsection', number: '13.1', title: 'Regular Audits', content: [
+            { type: 'p', text: 'The Department head (or a designated auditor) performs:' },
+            { type: 'list', items: [
+              'A daily express dashboard audit: today’s tasks, missed calls, Cliq SLA.',
+              'A weekly data hygiene audit: duplicates, empty fields, abandoned Deals.',
+              'A monthly full audit of compliance with this Regulation.'
+            ]}
+          ]},
+          { type: 'subsection', number: '13.2', title: 'Violation Notice', content: [
+            { type: 'p', text: 'On a confirmed violation, the employee receives a Cliq notice indicating: the Regulation clause violated; the specific violation (a link to the CRM record); the deadline to remediate.' }
+          ]}
+        ]
+      },
+      {
+        number: '14', title: 'Liability for Violations',
+        content: [
+          { type: 'subsection', number: '14.1', title: 'Escalation Scale', content: [
+            { type: 'olist', items: [
+              '<strong>First violation</strong> — verbal warning, recorded in Cliq.',
+              '<strong>Second violation of the same clause within 30 days</strong> — written warning, monthly bonus reduced by 5–15%.',
+              '<strong>Third violation of the same clause within 90 days</strong> — monthly bonus reduced by 25–50%, conversation with the direct supervisor.',
+              '<strong>Systematic violations</strong> (more than 5 records in a month across different clauses, or 3 records of the same clause within a quarter) — grounds for terminating the contractor agreement at the company’s initiative.'
+            ]}
+          ]},
+          { type: 'subsection', number: '14.2', title: 'Gross Violations', content: [
+            { type: 'p', text: 'Each of the following triggers a 50% bonus reduction on a single occurrence and may serve as grounds for immediate termination of the contractor relationship:' },
+            { type: 'list', items: [
+              'Concealing client correspondence from the company.',
+              'Running a client via a personal channel to bypass CRM.',
+              'Disclosing client data to third parties.',
+              'Deleting CRM records without approval.',
+              'Systematic falsification of task results.'
+            ]}
+          ]},
+          { type: 'subsection', number: '14.3', title: 'Day Not Counted Toward Compensation', content: [
+            { type: 'p', text: 'A day on which the minimum task quota (Section 4.7) is not met without a valid reason (sick leave, time off, business trip, training) is not counted in the compensation calculation.' }
+          ]}
+        ]
+      },
+      {
+        number: '15', title: 'Final Provisions',
+        content: [
+          { type: 'subsection', number: '15.1', title: 'Effective Date', content: [
+            { type: 'p', text: 'This Regulation takes effect on the date of approval and applies to all current and new employees of the Sales Department.' }
+          ]},
+          { type: 'subsection', number: '15.2', title: 'Acknowledgement', content: [
+            { type: 'p', text: 'Each employee confirms acknowledgement of this Regulation by ticking the corresponding checkbox in Zoho People. Until the acknowledgement is recorded, access to CRM client work is not granted.' }
+          ]},
+          { type: 'subsection', number: '15.3', title: 'Amendments', content: [
+            { type: 'p', text: 'Amendments are introduced by publishing an updated version of the document in Zoho People with notification to employees and a mandatory re-acknowledgement.' }
+          ]}
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────
   // 6. LEAVE AND TIME OFF POLICY
   // ────────────────────────────────────────
   {
@@ -1404,6 +1963,331 @@ const documents = [
 ];
 
 // ═══════════════════════════════════════════
+// DEPARTMENT LANDING PAGE (Commercial, etc.)
+// ═══════════════════════════════════════════
+
+const DEPARTMENTS = {
+  commercial: {
+    id: 'commercial-department',
+    title: 'Commercial Department',
+    heroLine1: 'Commercial',
+    heroLine2: 'Department',
+    subtitle: 'Mandatory regulations, KPI standards, and process documents for the Sales, Business Development, Partnerships, and Marketing teams.',
+    badge: 'Department Knowledge Base',
+    label: 'Regulations'
+  }
+};
+
+function generateDepartmentPage(deptKey, docsInDept) {
+  const dept = DEPARTMENTS[deptKey];
+  const cards = docsInDept.map(d => {
+    const badge = d.badge || 'Regulation';
+    return `
+        <a href="${d.id}.html" class="card">
+          <div class="card-inner">
+            <div class="card-top">
+              <div class="card-icon">${(d.icon || ICONS.shield).replace(/rgba\(255,255,255,0.6\)/g, 'rgba(255,255,255,0.7)').replace(/rgba\(255,255,255,0.8\)/g, 'rgba(255,255,255,0.9)')}</div>
+              <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12H19M12 5l7 7-7 7"/></svg></div>
+            </div>
+            <h3>${d.title}</h3>
+            <p>${d.subtitle.replace(/^Vault Group\s*[—\-]\s*/, '')}</p>
+            <div class="card-badge">${badge}</div>
+          </div>
+        </a>`;
+  }).join('\n');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${dept.title} — Vault Knowledge Base</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-blue: #0019FF;
+      --neon-blue: #6152F4;
+      --white: #FFFFFF;
+      --black: #191B20;
+      --g100: #F5F6F8;
+      --g200: #E8E9ED;
+      --g500: #8B8D94;
+      --g700: #4A4C52;
+      --g900: #2A2C32;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .page { position: relative; z-index: 1; }
+    .header {
+      padding: 48px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header .logo svg { height: 32px; width: auto; display: block; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .back-link:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+    }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; transition: transform 0.2s ease; }
+    .back-link:hover svg { transform: translateX(-3px); }
+    .header-badge {
+      padding: 8px 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero { padding: 40px 80px 80px; max-width: 980px; }
+    .hero h1 {
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--deep-blue), var(--neon-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { font-size: 18px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 620px; }
+    .cards-section { padding: 0 80px 100px; }
+    .cards-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 32px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 36px 32px;
+      text-decoration: none;
+      color: var(--white);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(0,25,255,0.06), rgba(97,82,244,0.03));
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .card:hover {
+      border-color: rgba(0,25,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,25,255,0.12);
+    }
+    .card:hover::before { opacity: 1; }
+    .card-inner { position: relative; z-index: 1; }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .card-icon {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,25,255,0.1);
+      border-radius: 14px;
+      flex-shrink: 0;
+    }
+    .card-icon svg { width: 26px; height: 26px; }
+    .card-arrow {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .card:hover .card-arrow { background: var(--deep-blue); transform: translateX(2px); }
+    .card-arrow svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.4); transition: stroke 0.3s ease; }
+    .card:hover .card-arrow svg { stroke: white; }
+    .card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .card p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.65; }
+    .card-badge {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(97,82,244,0.12);
+      color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(97,82,244,0.2);
+    }
+    .footer {
+      padding: 40px 80px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-text { font-size: 13px; color: rgba(255,255,255,0.2); }
+    .footer .logo svg { height: 20px; width: auto; opacity: 0.3; }
+    @media (max-width: 768px) {
+      .header, .hero, .cards-section, .footer { padding-left: 24px; padding-right: 24px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <div class="page">
+    <header class="header">
+      <div class="logo">${LOGO_WHITE}</div>
+      <div class="header-right">
+        <a href="index.html" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Knowledge Base</a>
+        <div class="header-badge">${dept.badge}</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>${dept.heroLine1}<br><span class="gradient">${dept.heroLine2}</span></h1>
+      <p>${dept.subtitle}</p>
+    </section>
+
+    <section class="cards-section">
+      <div class="cards-label">${dept.label}</div>
+      <div class="cards-grid">
+${cards}
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-text">Vault Group &copy; 2026 &middot; Confidential &middot; Internal Use Only</div>
+      <div class="logo">${LOGO_WHITE}</div>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('bgCanvas');
+      const ctx = canvas.getContext('2d');
+      let dpr = window.devicePixelRatio || 1;
+      let w, h, time = 0;
+      function resize() {
+        w = window.innerWidth; h = window.innerHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        const lineCount = 25;
+        const centerY = h * 0.4;
+        for (let i = 0; i < lineCount; i++) {
+          const p = i / lineCount;
+          const r = Math.floor(p * 60);
+          const g = Math.floor(15 + p * 40);
+          const b = Math.floor(200 - p * 10);
+          const a = (0.03 + p * 0.1).toFixed(3);
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+          ctx.lineWidth = 1;
+          for (let x = 0; x <= w; x += 4) {
+            const xN = x / w;
+            const y = centerY
+              + Math.sin(xN * Math.PI * 2 + time * 0.4 + i * 0.25) * (30 + i * 3)
+              + Math.sin(xN * Math.PI * 4.5 + time * 0.2 + i * 0.12) * (15 + i)
+              + (i - lineCount / 2) * 7;
+            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+        for (let g = 0; g < 2; g++) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(0, 25, 255, 0.15)';
+          ctx.lineWidth = 1.5;
+          ctx.shadowColor = 'rgba(0, 25, 255, 0.3)';
+          ctx.shadowBlur = 10;
+          const off = g * 15;
+          for (let x = 0; x <= w; x += 4) {
+            const xN = x / w;
+            const y = centerY
+              + Math.sin(xN * Math.PI * 2.5 + time * 0.35 + off) * 60
+              + Math.cos(xN * Math.PI * 1.5 + time * 0.2 + off * 0.5) * 30;
+            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+        }
+        time += 0.005;
+        requestAnimationFrame(draw);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      draw();
+    })();
+
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = \`all 0.6s cubic-bezier(0.16, 1, 0.3, 1) \${i * 0.08}s\`;
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>`;
+}
+
+// ═══════════════════════════════════════════
 // BUILD
 // ═══════════════════════════════════════════
 
@@ -1412,23 +2296,40 @@ const htmlOnly = args.includes('--html-only');
 const pdfOnly = args.includes('--pdf-only');
 
 const outputDir = path.join(__dirname, '..', 'output');
+const docsDir = path.join(__dirname, '..', 'Docs');
 fs.mkdirSync(outputDir, { recursive: true });
+fs.mkdirSync(docsDir, { recursive: true });
+
+// Group docs by department
+const docsByDept = {};
+for (const doc of documents) {
+  if (doc.department) {
+    docsByDept[doc.department] = docsByDept[doc.department] || [];
+    docsByDept[doc.department].push(doc);
+  }
+}
 
 // Generate HTML files
 if (!pdfOnly) {
   console.log('\n  Generating HTML files...\n');
   for (const doc of documents) {
     const html = generateHTML(doc);
-    const outPath = path.join(outputDir, `${doc.id}.html`);
-    fs.writeFileSync(outPath, html, 'utf-8');
+    fs.writeFileSync(path.join(outputDir, `${doc.id}.html`), html, 'utf-8');
+    fs.writeFileSync(path.join(docsDir, `${doc.id}.html`), html, 'utf-8');
     console.log(`  ✓ ${doc.id}.html`);
   }
-  console.log(`\n  ${documents.length} HTML files written to output/\n`);
+  console.log(`\n  ${documents.length} HTML files written to output/ and Docs/\n`);
+
+  // Generate department landing pages
+  for (const deptKey of Object.keys(docsByDept)) {
+    const html = generateDepartmentPage(deptKey, docsByDept[deptKey]);
+    const fileName = `${DEPARTMENTS[deptKey].id}.html`;
+    fs.writeFileSync(path.join(outputDir, fileName), html, 'utf-8');
+    fs.writeFileSync(path.join(docsDir, fileName), html, 'utf-8');
+    console.log(`  ✓ ${fileName} (department landing page)`);
+  }
 
   // Generate content.json — merge with existing HR edits
-  const docsDir = path.join(__dirname, '..', 'docs');
-  fs.mkdirSync(docsDir, { recursive: true });
-
   const contentJsonPath = path.join(docsDir, 'content.json');
   let existingContent = {};
   try {
@@ -1506,13 +2407,23 @@ if (!htmlOnly) {
         document.body.classList.add('pdf-mode');
       });
 
+      const pdfPath = path.join(outputDir, `${doc.id}.pdf`);
       await page.pdf({
-        path: path.join(outputDir, `${doc.id}.pdf`),
+        path: pdfPath,
         format: 'A4',
         printBackground: true,
         margin: { top: '0', right: '0', bottom: '0', left: '0' },
         displayHeaderFooter: false
       });
+
+      // Mirror PDF into Docs/ only for department documents (kb.vault.ist download)
+      if (doc.department) {
+        try {
+          fs.copyFileSync(pdfPath, path.join(docsDir, `${doc.id}.pdf`));
+        } catch (e) {
+          console.error(`    ! could not copy PDF to Docs/: ${e.message}`);
+        }
+      }
 
       await page.close();
       console.log(`  ✓ ${doc.id}.pdf`);
