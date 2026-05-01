@@ -814,16 +814,35 @@ function generateHTML(doc) {
     .signature-block {
       display: none;
       page-break-before: always;
+      page-break-after: avoid;
       break-before: page;
-      padding: 80px 60px 60px;
-      max-width: 820px;
+      break-after: avoid;
+      padding: 0 60px;
       margin: 0 auto;
       text-align: center;
       color: var(--g900);
       background: var(--white);
     }
-    body.pdf-mode .signature-block { display: block; }
-    @media print { .signature-block { display: block; } }
+    body.pdf-mode .signature-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 260mm;
+    }
+    @media print {
+      .signature-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 260mm;
+      }
+    }
+    .signature-inner {
+      width: 100%;
+      max-width: 600px;
+    }
 
     .signature-stamp {
       display: inline-block;
@@ -883,7 +902,13 @@ function generateHTML(doc) {
     /* ── PDF Mode ── */
     body.pdf-mode .progress-bar,
     body.pdf-mode .scroll-hint,
-    body.pdf-mode #waveCanvas { display: none !important; }
+    body.pdf-mode #waveCanvas,
+    body.pdf-mode .footer-back,
+    body.pdf-mode .footer-back-wrap { display: none !important; }
+    @media print {
+      .footer-back,
+      .footer-back-wrap { display: none !important; }
+    }
 
     body.pdf-mode .hero {
       min-height: 0;
@@ -975,7 +1000,7 @@ function generateHTML(doc) {
     ${doc.intro ? `<div class="intro-text">${doc.intro}</div>` : ''}
     ${sectionsHTML}
     ${doc.closing ? `<div class="callout closing">${doc.closing}</div>` : ''}
-    <div style="text-align:center;margin-top:48px;">
+    <div class="footer-back-wrap" style="text-align:center;margin-top:48px;">
       <a href="${doc.backHref || 'index.html'}" class="footer-back"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>${doc.backLabel || 'Back to All Documents'}</a>
     </div>
   </main>
