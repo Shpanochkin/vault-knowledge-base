@@ -1,0 +1,62 @@
+{
+  "type": "sales",
+  "month": "May 2026",
+  "monthRu": "Май 2026",
+  "monthSlug": "2026-05",
+  "orderNumber": "01-2026-S",
+  "issuanceDateEn": "April 30, 2026",
+  "issuanceDateRu": "30 апреля 2026 г.",
+  "effectiveDateEn": "May 1, 2026",
+  "effectiveDateRu": "1 мая 2026 г.",
+  "plans": [
+    {
+      "employee": "John Doe",
+      "revenuePlanUSD": 150000,
+      "products": [
+        { "name": "Vault PSP", "count": 5, "mandatory": true },
+        { "name": "Vault Cards", "count": 3, "mandatory": true },
+        { "name": "Vault Crypto On-Ramp", "count": 2, "mandatory": false }
+      ]
+    },
+    {
+      "employee": "Jane Smith",
+      "revenuePlanUSD": 200000,
+      "products": [
+        { "name": "Vault PSP", "count": 6, "mandatory": true },
+        { "name": "Vault Cards", "count": 4, "mandatory": true },
+        { "name": "Vault Crypto On-Ramp", "count": 3, "mandatory": false }
+      ]
+    }
+  ],
+  "kpi": {
+    "activity": {
+      "closedTasksPerDay": 20,
+      "newDealsPerMonth": 10,
+      "qualifiedMeetingsPerWeek": 2
+    },
+    "sla": {
+      "firstTouchOnNewLeadMinutes": 15
+    },
+    "hygiene": {
+      "maxOverdueTasksPerMonth": 0,
+      "maxAbandonedDealsPerMonth": 0
+    },
+    "qualityMinReviewScore": 3.0
+  },
+  "stageTimeLimitsDays": {
+    "Discovery / QLF / Demo": 7,
+    "Docs Pending": 14,
+    "Offer Sent & Follow-up": 14,
+    "Compliance Review": 14,
+    "SLA/SOW Signing": 7
+  },
+  "criticalMetrics": [
+    "Open tasks at end of day",
+    "Overdue tasks",
+    "Lost Reason completeness"
+  ],
+  "disciplinaryScale": {
+    "rollingWindowDays": 90,
+    "thresholdsCount": [5, 10, 20, 30, 50]
+  }
+}

@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node src/build.js",
     "html": "node src/build.js --html-only",
-    "pdf": "node src/build.js --pdf-only"
+    "pdf": "node src/build.js --pdf-only",
+    "orders": "node src/build-orders.js"
   },
   "dependencies": {
     "puppeteer": "^24.0.0"

@@ -1,0 +1,47 @@
+{
+  "type": "bd",
+  "month": "May 2026",
+  "monthRu": "Май 2026",
+  "monthSlug": "2026-05",
+  "orderNumber": "01-2026-BD",
+  "issuanceDateEn": "April 30, 2026",
+  "issuanceDateRu": "30 апреля 2026 г.",
+  "effectiveDateEn": "May 1, 2026",
+  "effectiveDateRu": "1 мая 2026 г.",
+  "plans": [
+    {
+      "employee": "Alice Brown",
+      "meetingsPlan": 20
+    },
+    {
+      "employee": "Bob Wilson",
+      "meetingsPlan": 18
+    }
+  ],
+  "kpi": {
+    "activity": {
+      "closedTasksPerDay": 20,
+      "newCompaniesPerMonth": 30,
+      "newContactsPerMonth": 60
+    },
+    "sla": {
+      "firstOutreachOnNewCompanyHours": 24
+    },
+    "hygiene": {
+      "maxOverdueTasksPerMonth": 0
+    },
+    "quality": {
+      "maxReturnRatePercent": 25,
+      "returnFlagWindowDays": 14,
+      "minReceivingPartyScore": 3.0
+    }
+  },
+  "criticalMetrics": [
+    "Open tasks at end of day",
+    "Overdue tasks"
+  ],
+  "disciplinaryScale": {
+    "rollingWindowDays": 90,
+    "thresholdsCount": [5, 10, 20, 30, 50]
+  }
+}
