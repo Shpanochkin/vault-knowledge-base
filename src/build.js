@@ -87,7 +87,8 @@ const ICONS = {
   laptop: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="32" height="22" rx="2" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/><path d="M4 38H44" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/><path d="M16 32L14 38H34L32 32" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   invoice: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 6H30L38 14V40C38 41.1 37.1 42 36 42H12C10.9 42 10 41.1 10 40V8C10 6.9 10.9 6 12 6Z" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 6V14H38" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 22V34" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round"/><path d="M28 26C28 24.3 26.2 23 24 23C21.8 23 20 24.3 20 26C20 27.7 21.8 29 24 29C26.2 29 28 30.3 28 32C28 33.7 26.2 35 24 35C21.8 35 20 33.7 20 32" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
   book: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 12C24 12 20 6 10 6V36C20 36 24 40 24 40C24 40 28 36 38 36V6C28 6 24 12 24 12Z" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 12V40" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/></svg>`,
-  calendar: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="12" width="32" height="28" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/><path d="M8 20H40" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><path d="M16 8V14" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/><path d="M32 8V14" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="28" r="2" fill="rgba(255,255,255,0.5)"/><circle cx="24" cy="28" r="2" fill="rgba(255,255,255,0.5)"/><circle cx="30" cy="28" r="2" fill="rgba(255,255,255,0.5)"/><circle cx="18" cy="34" r="2" fill="rgba(255,255,255,0.5)"/></svg>`
+  calendar: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="12" width="32" height="28" rx="3" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/><path d="M8 20H40" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><path d="M16 8V14" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/><path d="M32 8V14" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="28" r="2" fill="rgba(255,255,255,0.5)"/><circle cx="24" cy="28" r="2" fill="rgba(255,255,255,0.5)"/><circle cx="30" cy="28" r="2" fill="rgba(255,255,255,0.5)"/><circle cx="18" cy="34" r="2" fill="rgba(255,255,255,0.5)"/></svg>`,
+  chart: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 8V40H42" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="12" y="24" width="5" height="12" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/><rect x="21" y="16" width="5" height="20" rx="1" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" fill="none"/><rect x="30" y="28" width="5" height="8" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/><path d="M14 22L23 14L33 26" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`
 };
 
 // ═══════════════════════════════════════════
@@ -1671,7 +1672,7 @@ const documents = [
             { type: 'p', text: 'Every Deal in an active stage (not Closed Won / Closed Lost) must have at least one open task. A Deal without an open task for the current or next workday is considered abandoned and recorded as a violation.' }
           ]},
           { type: 'subsection', number: '4.6', title: 'Tasks Live on the Deal', content: [
-            { type: 'p', text: 'Tasks, events, calls, and emails are created <strong>strictly inside the Deal</strong>. Creating activities at the Contact or Account level is prohibited (the only exception is pre-sales activity before a Deal exists, agreed with the supervisor).' }
+            { type: 'p', html: 'Tasks, events, calls, and emails are created <strong>strictly inside the Deal</strong>. Creating activities at the Contact or Account level is prohibited (the only exception is pre-sales activity before a Deal exists, agreed with the supervisor).' }
           ]},
           { type: 'subsection', number: '4.7', title: 'Minimum Daily Output', content: [
             { type: 'olist', items: [
@@ -1768,7 +1769,7 @@ const documents = [
         number: '08', title: 'Owner Reassignment',
         content: [
           { type: 'subsection', number: '8.1', title: 'Cascade Principle', content: [
-            { type: 'p', text: 'Owner reassignment is performed <strong>only from the Account record</strong>. After the Account Owner changes, the Owner is updated on all related Contacts and Deals.' }
+            { type: 'p', html: 'Owner reassignment is performed <strong>only from the Account record</strong>. After the Account Owner changes, the Owner is updated on all related Contacts and Deals.' }
           ]},
           { type: 'subsection', number: '8.2', title: 'Notification', content: [
             { type: 'p', text: 'An Owner change is accompanied by:' },
@@ -1915,6 +1916,513 @@ const documents = [
   },
 
   // ────────────────────────────────────────
+  // 9. SALES MANAGER — KPI STANDARDS (EN)
+  //    (Commercial Department, strict mode)
+  // ────────────────────────────────────────
+  {
+    id: 'Sales_Manager_KPI_Standards',
+    title: 'Sales Manager — KPI Standards',
+    heroTitle: 'Sales Manager<br>KPI Standards',
+    badge: 'Commercial Department · Mandatory',
+    subtitle: 'Vault Group — KPI structure, Sales Plan, measurement, and accountability rules for Sales Managers.',
+    icon: ICONS.chart,
+    seed: 20,
+    style: 'strict',
+    department: 'commercial',
+    lang: 'en',
+    backHref: 'commercial-department.html',
+    backLabel: 'Back to Commercial Department',
+    backLabelShort: 'Commercial Department',
+    intro: 'This document establishes the structure of KPIs and the Sales Plan for a Sales Manager, the measurement procedure, and the accountability scale for non-performance. The actual numeric values (plan targets and KPI quotas) are set in a monthly Order of the Head of the Sales Department and are not fixed in this document.',
+    signatureBlock: {
+      stampLabel: 'Approved',
+      intro: 'Issued and approved by the Chief Commercial Operations Officer of Vault Group.',
+      name: 'Sviatoslav Shpanochkin',
+      title: 'Chief Commercial Operations Officer',
+      date: 'May 1, 2026',
+      dateLabel: 'Effective date',
+      method: 'Signed via Zoho Sign'
+    },
+    sections: [
+      {
+        number: '01', title: 'General Provisions',
+        content: [
+          { type: 'subsection', number: '1.1', title: 'Purpose', content: [
+            { type: 'p', text: 'This document establishes the structure of the KPIs and the Sales Plan for a Sales Manager, the measurement procedure, and the accountability scale for non-performance. The actual numeric values (plan targets and KPI quotas) are set in a monthly Order of the Head of the Sales Department (Section 2) and are not fixed in this document.' }
+          ]},
+          { type: 'subsection', number: '1.2', title: 'Scope', content: [
+            { type: 'p', text: 'The document applies to all employees in the role of Sales Manager, including those acting in the role on a temporary basis.' }
+          ]},
+          { type: 'subsection', number: '1.3', title: 'Measurement Principles', content: [
+            { type: 'olist', items: [
+              'All metrics are pulled automatically from Zoho CRM based on data entered by the employee in line with the underlying <strong>Zoho Ecosystem Usage Regulation for the Sales Department</strong>.',
+              'If CRM data does not match reality, the corresponding metric is treated as failed regardless of the employee’s actual performance.',
+              'The measurement period depends on the metric (day / week / month). The final reckoning of the Plan and of violations is performed on the 1st business day of the following month.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.4', title: 'Two Independent Accountability Tracks', content: [
+            { type: 'p', html: 'Non-performance triggers measures along two <strong>independent</strong> tracks (Section 7):' },
+            { type: 'list', items: [
+              '<strong>Sales Plan</strong> — escalation by consecutive months of failure.',
+              '<strong>KPI / Underlying Regulation</strong> — escalation by the count of violations within a rolling window.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.5', title: 'What This Document Sets vs. What the Order Sets', content: [
+            { type: 'list', items: [
+              '<strong>The document</strong> fixes the structure: what is measured, how, in which period, and with what consequences. Signed once.',
+              '<strong>The Order</strong> sets the actual numeric values for each month: the individual Sales Plan, the KPI quotas, the limits, and the parameters of the disciplinary scale.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '02', title: 'Composition of the Monthly Order',
+        content: [
+          { type: 'p', text: 'The monthly Order from the Head of the Sales Department sets, for each calendar month:' },
+          { type: 'subsection', title: '1. Sales Plan', content: [
+            { type: 'list', items: [
+              'Plan revenue in USD for the employee.',
+              'Plan number of new clients broken down <strong>by each product / tariff</strong>.',
+              'List of mandatory products (those for which the Plan must be met without exception).'
+            ]}
+          ]},
+          { type: 'subsection', title: '2. KPI Standards', content: [
+            { type: 'list', items: [
+              'Concrete values for "Activity" (tasks/day, meetings/week, new deals/month).',
+              'Concrete intervals for "SLA" where the Order defines them (e.g., time to first touch on a new Lead).',
+              'Limits for permissible deviations under "Pipeline Hygiene" and "Quality of Work".'
+            ]}
+          ]},
+          { type: 'subsection', title: '3. Parameters of the Disciplinary Scale (Section 7.2)', content: [
+            { type: 'list', items: [
+              'Length of the rolling window for the violations counter.',
+              'Violation count thresholds for each of the 5 steps of the scale.'
+            ]}
+          ]},
+          { type: 'subsection', number: '2.1', title: 'Publication Date', content: [
+            { type: 'p', html: 'The Order is published in Zoho People <strong>no later than the 1st business day</strong> of the month it applies to. Until a new Order is published, the values from the previous Order remain in effect.' }
+          ]},
+          { type: 'subsection', number: '2.2', title: 'Acknowledgement', content: [
+            { type: 'p', html: 'Every Sales Manager must acknowledge the Order (checkbox in Zoho People) within <strong>2 business days</strong> of its publication.' }
+          ]},
+          { type: 'subsection', number: '2.3', title: 'Force of the Order', content: [
+            { type: 'p', text: 'The Order has the same binding force as the present document.' }
+          ]}
+        ]
+      },
+      {
+        number: '03', title: 'KPI Standards Structure',
+        content: [
+          { type: 'subsection', number: '3.1', title: '“Activity” Group', content: [
+            { type: 'table', headers: ['Metric', 'Period', 'Description'], rows: [
+              ['Closed tasks', 'day', 'Tasks closed with the Description field filled (Underlying Regulation 4.1). "Set Next Step" counts when, on closure, a real next task on the Deal has been created.'],
+              ['New deals in Sales', 'month', 'A Deal in the Sales Manager’s Owner that first entered the Sales pipeline and advanced at least one stage during the month.'],
+              ['Qualified meetings', 'week', 'New meetings at stage Discovery / QLF / Demo or beyond, marked in CRM as "Held" with a filled Result / Notes.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.2', title: '“Response SLA” Group', content: [
+            { type: 'table', headers: ['Metric', 'SLA', 'Description'], rows: [
+              ['First touch on a new Lead / Deal in Owner', 'set by the Order', 'During working hours — close the first task or take the inbound within the interval set by the Order. Outside of working hours — within the first business hour.'],
+              ['Missed call callback', '15 minutes', 'Per Underlying Regulation 9.1.4 — after becoming available.'],
+              ['Reply to a client on WhatsApp (via Zoho CRM)', '<strong>5 minutes</strong>', 'During working hours. Personal WhatsApp is prohibited by Underlying Regulation 5.2.'],
+              ['Reply to a client by Email', '4 hours', 'Per Underlying Regulation 9.3 — during working hours.'],
+              ['Logging activity result in CRM', '30 minutes', 'After completing a client activity (call, meeting, email, message).']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.3', title: '“Pipeline Hygiene” Group', content: [
+            { type: 'table', headers: ['Metric', 'Period', 'Description'], rows: [
+              ['Overdue tasks', 'continuous', 'Overdue tasks <strong>must not exist at all</strong> — neither during the day nor at end of day. Each occurrence is a violation.'],
+              ['Open tasks at end of day', 'day', 'At end of day <strong>no overdue and no tasks scheduled for today</strong> may remain. All today’s tasks are closed with a result, or closed with a postponement reason and a fresh task created for the next day.'],
+              ['"Abandoned" Deals', 'day', 'An active Deal without an open task for the current or next business day is a violation (Underlying Regulation 4.5).'],
+              ['"Set Next Step" closed within 24 hours', 'day', 'The "Set Next Step" task is closed within 24 hours of creation, after a real next task has been set.'],
+              ['Mandatory field completeness', 'per deal', 'All mandatory fields for the current Pipeline stage are filled to 100% on every active Deal (Underlying Regulation 6.3).'],
+              ['Duplicates', 'per occurrence', 'Creating a duplicate Account / Contact / Deal is a violation.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.4', title: '“Quality of Work” Group', content: [
+            { type: 'table', headers: ['Metric', 'Period', 'Description'], rows: [
+              ['Closed Won documentation', 'per deal', 'Full set of documents in Attachments: completed questionnaire, signed SLA / SOW, payment confirmations.'],
+              ['Deal result write-up', 'per deal', 'Closed Won / Disqualified/Rejected — a summary in the Deal’s Description: what happened, what worked or did not, takeaways.'],
+              ['Manager review score', 'month', 'Once a month the direct supervisor performs a sample review of calls and notes. Scale 1–5 on: preparation, conversation handling, objection handling, follow-up, accuracy of CRM data.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.5', title: 'Conversions (informational)', content: [
+            { type: 'p', text: 'Sales pipeline stages (Layout "Sales" in Zoho CRM):' },
+            { type: 'callout', variant: 'important', html: 'Assigned/Outreach → Discovery / QLF / Demo → Docs Request → Docs Pending → Pre-Compliance Check → Offer Preparation → CFO Pricing Approval → Offer Sent &amp; Follow-up → KYB Invoiced → Compliance Review → SLA/SOW Signing → Setup Fee Invoiced &amp; Awaiting Payment → Closed Won (or, in parallel — Disqualified/Rejected).' },
+            { type: 'p', html: 'Conversions across these stages are <strong>tracked on the Sales Manager’s and the supervisor’s dashboards</strong> as pipeline diagnostics. However:' },
+            { type: 'list', items: [
+              'The Sales Manager’s goal is <strong>meeting the Sales Plan</strong>, not the conversions themselves.',
+              '<strong>Conversions are not subject to disciplinary action.</strong>',
+              'The quality of the inbound leads is not the Sales Manager’s responsibility.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '04', title: 'Sales Plan Structure',
+        content: [
+          { type: 'subsection', number: '4.1', title: 'Composition of the Plan', content: [
+            { type: 'p', text: 'The monthly Sales Plan is set in the Order and consists of:' },
+            { type: 'olist', items: [
+              '<strong>Plan revenue in USD</strong> — the total Closed Won amount for the employee.',
+              '<strong>Plan number of new clients per product / tariff</strong> — for each product on Vault’s current price list.',
+              '<strong>List of mandatory products</strong> — those for which the Plan must be met without exception.'
+            ]}
+          ]},
+          { type: 'subsection', number: '4.2', title: 'What Counts as Plan Achieved', content: [
+            { type: 'p', html: 'The Sales Plan is considered <strong>met</strong> for the month when the employee has:' },
+            { type: 'list', items: [
+              'Reached the plan revenue in USD, <strong>AND</strong>',
+              'Met the client-count plan for <strong>every</strong> mandatory product.'
+            ]},
+            { type: 'p', html: 'Failing either condition is a Plan failure. The Plan is reckoned against <code>Closed Won</code> deals dated within the calendar month (Stage = Closed Won).' }
+          ]},
+          { type: 'subsection', number: '4.3', title: 'What Counts as Plan Overachieved (for Section 7.3)', content: [
+            { type: 'p', html: 'The Sales Plan is considered <strong>overachieved by 20% or more</strong> when the actual revenue <strong>and</strong> the actual client count for every mandatory product <strong>simultaneously</strong> exceed the plan by 20% or more.' }
+          ]}
+        ]
+      },
+      {
+        number: '05', title: 'Source of Data and Calculation',
+        content: [
+          { type: 'subsection', number: '5.1', title: 'Source', content: [
+            { type: 'p', text: 'All metrics are pulled automatically from Zoho CRM Dashboards (Sales KPI Monitor → Sales Manager). Manual adjustments to the calculation are prohibited.' }
+          ]},
+          { type: 'subsection', number: '5.2', title: 'Transparency', content: [
+            { type: 'list', items: [
+              'The Sales Manager has access to a personal real-time dashboard.',
+              'A monthly report is sent to the employee in Cliq no later than the <strong>3rd business day</strong> of the following month. The report covers separately: the Sales Plan status, the violations status, and the current position on the 7.2 counter.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.3', title: 'Disputing the Calculation', content: [
+            { type: 'list', items: [
+              'A disagreement is raised by filing a Zoho Desk ticket (type: <strong>KPI Dispute</strong>) within <strong>5 business days</strong> of receiving the report.',
+              'After 5 business days the calculation is considered accepted.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '06', title: 'Relation to Bonus',
+        content: [
+          { type: 'p', text: 'The actual size of the bonus, the formula, and the conditions of payment are set by the individual agreement between the employee and the company and are not fixed in this document. Withholding of the bonus is possible as one of the measures under Section 7.2.' }
+        ]
+      },
+      {
+        number: '07', title: 'Accountability',
+        content: [
+          { type: 'subsection', number: '7.1', title: 'Sales Plan Scale (by consecutive months)', content: [
+            { type: 'table', headers: ['Step', 'Trigger', 'Measure'], rows: [
+              ['1', 'First month with a failed Plan', '<strong>Written reprimand</strong> — placed in the employee’s record in Zoho People with a specific note: which plan target was missed and by how much.'],
+              ['2', 'Second consecutive month with a failed Plan', '<strong>Termination of the contractor agreement</strong> at the company’s initiative.']
+            ]},
+            { type: 'p', text: 'A single full month with the Plan met resets the consecutive-failure counter.' }
+          ]},
+          { type: 'subsection', number: '7.2', title: 'KPI / Underlying Regulation Violations Scale (by count)', content: [
+            { type: 'p', html: 'Every recorded violation of the KPI Standards (Section 3) or of the underlying Regulation is added to a <strong>rolling window</strong>. The length of the window and the count thresholds for moving to each step are set by the Order.' },
+            { type: 'table', headers: ['Step', 'Trigger', 'Measure'], rows: [
+              ['1', 'First threshold reached', '<strong>Verbal warning</strong> with a record in Cliq and in the employee’s profile.'],
+              ['2', 'Second threshold reached', '<strong>Written reprimand</strong> listing the violations.'],
+              ['3', 'Third threshold reached', '<strong>Withholding of the monthly bonus</strong> with a stated rationale.'],
+              ['4', 'Fourth threshold reached', '<strong>Second written reprimand</strong>.'],
+              ['5', 'Fifth threshold reached', '<strong>Termination of the contractor agreement</strong>.']
+            ]},
+            { type: 'p', html: 'Steps 1–5 are climbed sequentially. Recorded warnings and reprimands stay in the employee’s profile for <strong>12 months</strong> and may be considered in subsequent reviews.' }
+          ]},
+          { type: 'subsection', number: '7.3', title: 'Plan Overachievement as a Mitigating Factor', content: [
+            { type: 'p', text: 'If, for the month:' },
+            { type: 'list', items: [
+              'The Sales Plan is <strong>overachieved by 20% or more</strong> (see 4.3), <strong>AND</strong>',
+              'KPI / Regulation violations have been recorded in the same month,'
+            ]},
+            { type: 'p', html: '— then the violations of that month are <strong>not added</strong> to the 7.2 counter. At the same time:' },
+            { type: 'olist', items: [
+              'The recorded violations are flagged in the employee’s profile as <strong>"deferred"</strong> (with type and date).',
+              'Should <strong>new violations</strong> be recorded over the <strong>next 90 days</strong>, the 7.2 escalation <strong>skips one step</strong> — for example, on reaching the first threshold the Step 2 measure (Reprimand) is applied directly instead of the Step 1 measure (Verbal warning).',
+              'A single full calendar month with no new violations and no deferred flags clears the deferred flags.'
+            ]},
+            { type: 'callout', variant: 'tip', html: '<strong>The intent:</strong> an overachieved Plan is an amnesty, not an indulgence. Continued violations after the amnesty meet a stricter response.' }
+          ]},
+          { type: 'subsection', number: '7.4', title: 'Right to Submit Explanations', content: [
+            { type: 'p', html: 'Before each step from the second (Reprimand) onward, the employee is given <strong>3 business days</strong> to submit a written explanation. The explanation is taken into account but does not erase the recorded fact when it is supported by the CRM data.' }
+          ]}
+        ]
+      },
+      {
+        number: '08', title: 'Final Provisions',
+        content: [
+          { type: 'subsection', number: '8.1', title: 'Relation to the Underlying Regulation', content: [
+            { type: 'p', html: 'The present Standards are an annex to the <strong>Zoho Ecosystem Usage Regulation for the Sales Department</strong>. Behavioural violations not covered here are handled under the underlying Regulation.' }
+          ]},
+          { type: 'subsection', number: '8.2', title: 'Acknowledgement', content: [
+            { type: 'p', text: 'Every Sales Manager confirms acknowledgement of these Standards by ticking the corresponding checkbox in Zoho People. Until the acknowledgement is recorded, access to the Sales CRM pipeline is not granted.' }
+          ]},
+          { type: 'subsection', number: '8.3', title: 'Amendments', content: [
+            { type: 'list', items: [
+              '<strong>The structure</strong> (Sections 2–4), <strong>the measurement procedure</strong> (Section 5), and <strong>the accountability scale</strong> (Section 7) are reviewed as needed and republished in Zoho People with mandatory re-acknowledgement.',
+              '<strong>The numeric values</strong> are changed by the monthly Order and <strong>do not require re-signing</strong> of the present document.'
+            ]}
+          ]}
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────
+  // 10. SALES MANAGER — НОРМАТИВЫ KPI (RU)
+  //     (Commercial Department, strict mode, Russian, PDF only)
+  // ────────────────────────────────────────
+  {
+    id: 'Sales_Manager_KPI_Standards_RU',
+    title: 'Нормативы KPI — Sales Manager',
+    heroTitle: 'Нормативы KPI<br>Sales Manager',
+    badge: 'Департамент продаж · Обязательно',
+    subtitle: 'Vault Group — Структура KPI, Sales Plan, порядок измерения и ответственность для Sales Manager.',
+    icon: ICONS.chart,
+    seed: 22.5,
+    style: 'strict',
+    department: 'commercial',
+    webHidden: true,
+    lang: 'ru',
+    backHref: 'commercial-department.html',
+    backLabel: 'Назад в Commercial Department',
+    backLabelShort: 'Commercial Department',
+    intro: 'Настоящий документ устанавливает структуру KPI и Плана продаж Sales Manager, порядок измерения и шкалу ответственности за невыполнение. Конкретные числовые значения (плановые показатели и нормативы) устанавливаются ежемесячным Приказом руководителя Департамента продаж и в данном документе не фиксируются.',
+    signatureBlock: {
+      stampLabel: 'Утверждено',
+      intro: 'Издано и утверждено Chief Commercial Operations Officer Vault Group.',
+      name: 'Святослав Шпаночкин',
+      title: 'Chief Commercial Operations Officer',
+      date: '1 мая 2026 г.',
+      dateLabel: 'Дата вступления в силу',
+      method: 'Подписано через Zoho Sign'
+    },
+    sections: [
+      {
+        number: '01', title: 'Общие положения',
+        content: [
+          { type: 'subsection', number: '1.1', title: 'Назначение', content: [
+            { type: 'p', text: 'Настоящий документ устанавливает структуру KPI и Плана продаж Sales Manager, порядок измерения и шкалу ответственности за невыполнение. Конкретные числовые значения (плановые показатели и нормативы) устанавливаются ежемесячным Приказом руководителя Департамента продаж (раздел 2) и в данном документе не фиксируются.' }
+          ]},
+          { type: 'subsection', number: '1.2', title: 'Область применения', content: [
+            { type: 'p', text: 'Документ распространяется на всех сотрудников в роли Sales Manager, включая временно исполняющих обязанности.' }
+          ]},
+          { type: 'subsection', number: '1.3', title: 'Принципы измерения', content: [
+            { type: 'olist', items: [
+              'Все метрики снимаются автоматически из Zoho CRM на основании данных, занесённых в соответствии с базовым <strong>Регламентом использования экосистемы Zoho в Департаменте продаж</strong>.',
+              'Если данные в CRM не соответствуют действительности — норматив или план считается проваленным вне зависимости от фактической работы сотрудника.',
+              'Период измерения зависит от метрики (день / неделя / месяц). Итоговый зачёт по Плану и нарушениям производится на 1-й рабочий день следующего месяца.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.4', title: 'Два независимых трека ответственности', content: [
+            { type: 'p', html: 'Невыполнение влечёт меры по двум <strong>независимым</strong> трекам (раздел 7):' },
+            { type: 'list', items: [
+              '<strong>Sales Plan</strong> — шкала по подряд идущим месяцам провала.',
+              '<strong>KPI / базовый Регламент</strong> — шкала по количеству нарушений в скользящем окне.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.5', title: 'Что устанавливает настоящий документ, а что — Приказ', content: [
+            { type: 'list', items: [
+              '<strong>Документ</strong> фиксирует структуру: что измеряется, как, в какой период, с какими последствиями. Подписывается единожды.',
+              '<strong>Приказ</strong> на каждый месяц устанавливает конкретные числовые значения: индивидуальный План продаж, нормативы KPI, лимиты, параметры дисциплинарной шкалы.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '02', title: 'Состав ежемесячного Приказа',
+        content: [
+          { type: 'p', text: 'Приказ руководителя Департамента продаж на каждый календарный месяц устанавливает:' },
+          { type: 'subsection', title: '1. Sales Plan', content: [
+            { type: 'list', items: [
+              'Плановая сумма продаж сотрудника в USD.',
+              'Плановое количество новых клиентов в разбивке <strong>по каждому продукту / тарифу</strong>.',
+              'Список обязательных продуктов (тех, по которым План должен быть выполнен в обязательном порядке).'
+            ]}
+          ]},
+          { type: 'subsection', title: '2. Нормативы KPI', content: [
+            { type: 'list', items: [
+              'Конкретные значения по группе «Активность» (задачи/день, встречи/неделя, новые сделки/месяц).',
+              'Конкретные интервалы по группе «SLA», где Приказ их задаёт (например, время первого контакта по новому Лиду).',
+              'Лимиты допустимых отклонений по группе «Гигиена воронки» и «Качество».'
+            ]}
+          ]},
+          { type: 'subsection', title: '3. Параметры дисциплинарной шкалы (раздел 7.2)', content: [
+            { type: 'list', items: [
+              'Длина скользящего окна счётчика нарушений.',
+              'Пороги количества нарушений для каждого из 5 шагов шкалы.'
+            ]}
+          ]},
+          { type: 'subsection', number: '2.1', title: 'Срок публикации', content: [
+            { type: 'p', html: 'Приказ публикуется в Zoho People <strong>не позднее 1-го рабочего дня</strong> месяца, к которому применяется. До публикации нового Приказа действуют значения предыдущего.' }
+          ]},
+          { type: 'subsection', number: '2.2', title: 'Ознакомление', content: [
+            { type: 'p', html: 'Каждый Sales Manager обязан ознакомиться с Приказом (отметка в Zoho People) в течение <strong>2 рабочих дней</strong> с момента публикации.' }
+          ]},
+          { type: 'subsection', number: '2.3', title: 'Сила Приказа', content: [
+            { type: 'p', text: 'Приказ имеет ту же обязательную силу, что и настоящий документ.' }
+          ]}
+        ]
+      },
+      {
+        number: '03', title: 'Структура нормативов KPI',
+        content: [
+          { type: 'subsection', number: '3.1', title: 'Группа «Активность»', content: [
+            { type: 'table', headers: ['Метрика', 'Период', 'Описание'], rows: [
+              ['Закрытые задачи', 'день', 'Задачи, закрытые с заполненным Description (базовый Регламент 4.1). «Set Next Step» засчитывается, если по её закрытии создана актуальная следующая задача.'],
+              ['Новые сделки в Sales', 'месяц', 'Deal в Owner Sales Manager, впервые попавшие в воронку Sales и продвинувшиеся хотя бы на один этап в течение месяца.'],
+              ['Квалифицированные встречи', 'неделя', 'Новые встречи в стадии Discovery / QLF / Demo или последующих, помеченные в CRM как «Held» с заполненным Result / Notes.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.2', title: 'Группа «SLA скорости реакции»', content: [
+            { type: 'table', headers: ['Метрика', 'SLA', 'Описание'], rows: [
+              ['Первый контакт по новому Лиду / Сделке в Owner', 'устанавливается Приказом', 'В рабочее время — закрыть первую задачу или принять входящий в течение интервала, заданного Приказом. Вне рабочего времени — в течение первого рабочего часа.'],
+              ['Возврат пропущенного звонка', '15 минут', 'По базовому Регламенту 9.1.4 — после освобождения.'],
+              ['Ответ клиенту в WhatsApp (через Zoho CRM)', '<strong>5 минут</strong>', 'В рабочее время. Личный WhatsApp запрещён базовым Регламентом 5.2.'],
+              ['Ответ клиенту по Email', '4 часа', 'По базовому Регламенту 9.3 — в рабочее время.'],
+              ['Внесение результата в CRM', '30 минут', 'После завершения клиентской активности.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.3', title: 'Группа «Гигиена воронки»', content: [
+            { type: 'table', headers: ['Метрика', 'Период', 'Описание'], rows: [
+              ['Просроченные задачи', 'непрерывно', 'Просроченных задач <strong>не должно быть в принципе</strong> — ни в течение дня, ни на конец дня. Каждый случай — нарушение.'],
+              ['Открытые задачи на конец рабочего дня', 'день', 'На конец дня <strong>ни просроченных, ни запланированных на сегодня</strong>. Все задачи дня закрыты с результатом, либо закрыты с указанием причины переноса и созданием новой задачи на следующий день.'],
+              ['«Брошенные» Сделки', 'день', 'Активная Сделка без открытой задачи на текущий или ближайший рабочий день — нарушение (базовый Регламент 4.5).'],
+              ['Закрытие «Set Next Step» в течение суток', 'день', 'Задача «Set Next Step» закрывается в течение 24 часов после постановки реальной следующей задачи.'],
+              ['Заполненность обязательных полей', 'сделка', 'Для всех активных Сделок обязательные по этапу Pipeline поля заполнены на 100% (базовый Регламент 6.3).'],
+              ['Дубликаты', 'случай', 'Создание дубликата Account / Contact / Deal — нарушение.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.4', title: 'Группа «Качество работы»', content: [
+            { type: 'table', headers: ['Метрика', 'Период', 'Описание'], rows: [
+              ['Документация Closed Won', 'сделка', 'Полный комплект документов в Attachments: заполненный опросник, подписанный SLA / SOW, подтверждения оплаты.'],
+              ['Описание результата сделки', 'сделка', 'Closed Won / Disqualified/Rejected — заполненное саммари в Description Сделки.'],
+              ['Оценка руководителя по ревью', 'месяц', 'Раз в месяц непосредственный руководитель проводит выборочное ревью звонков и заметок. Шкала 1–5 по критериям: подготовка, ведение, отработка возражений, follow-up, точность данных в CRM.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.5', title: 'Конверсии (информативно)', content: [
+            { type: 'p', text: 'Этапы воронки Sales (Layout «Sales» в Zoho CRM):' },
+            { type: 'callout', variant: 'important', html: 'Assigned/Outreach → Discovery / QLF / Demo → Docs Request → Docs Pending → Pre-Compliance Check → Offer Preparation → CFO Pricing Approval → Offer Sent &amp; Follow-up → KYB Invoiced → Compliance Review → SLA/SOW Signing → Setup Fee Invoiced &amp; Awaiting Payment → Closed Won (либо параллельно — Disqualified/Rejected).' },
+            { type: 'p', html: 'Конверсии по этим этапам <strong>отслеживаются на дашбордах</strong> Sales Manager и руководителя для диагностики работы воронки. При этом:' },
+            { type: 'list', items: [
+              'Целью Sales Manager является <strong>выполнение Sales Plan</strong>, а не конверсии как таковые.',
+              '<strong>Конверсии не являются предметом дисциплинарной ответственности.</strong>',
+              'Качество входящих лидов на ответственность Sales Manager не относится.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '04', title: 'Структура Sales Plan',
+        content: [
+          { type: 'subsection', number: '4.1', title: 'Состав Плана', content: [
+            { type: 'p', text: 'Sales Plan на месяц задаётся Приказом и состоит из:' },
+            { type: 'olist', items: [
+              '<strong>Сумма продаж в USD</strong> — общая сумма Closed Won сотрудника.',
+              '<strong>Количество новых клиентов по каждому продукту / тарифу</strong> — для каждого продукта из актуального прайса Vault.',
+              '<strong>Перечень обязательных продуктов</strong> — тех, по которым План должен быть выполнен без исключений.'
+            ]}
+          ]},
+          { type: 'subsection', number: '4.2', title: 'Что считается выполнением', content: [
+            { type: 'p', html: 'Sales Plan считается <strong>выполненным</strong> по итогам месяца, если:' },
+            { type: 'list', items: [
+              'Достигнута плановая сумма в USD, <strong>И</strong>',
+              'Выполнен план по количеству клиентов по <strong>всем</strong> обязательным продуктам.'
+            ]},
+            { type: 'p', html: 'Невыполнение хотя бы одного условия — провал Плана. План считается по сделкам в стадии <code>Closed Won</code> с датой закрытия в пределах календарного месяца (Stage = Closed Won).' }
+          ]},
+          { type: 'subsection', number: '4.3', title: 'Что считается перевыполнением (для раздела 7.3)', content: [
+            { type: 'p', html: 'Sales Plan считается <strong>перевыполненным на 20% и более</strong>, если фактическая сумма продаж <strong>и</strong> фактическое количество клиентов по обязательным продуктам <strong>одновременно</strong> превышают плановые на 20% или больше.' }
+          ]}
+        ]
+      },
+      {
+        number: '05', title: 'Источник данных и расчёт',
+        content: [
+          { type: 'subsection', number: '5.1', title: 'Источник', content: [
+            { type: 'p', text: 'Все метрики снимаются автоматически из Zoho CRM Dashboards (Sales KPI Monitor → Sales Manager). Ручные корректировки расчёта запрещены.' }
+          ]},
+          { type: 'subsection', number: '5.2', title: 'Прозрачность', content: [
+            { type: 'list', items: [
+              'Sales Manager имеет доступ к личному дашборду в реальном времени.',
+              'Ежемесячный отчёт направляется сотруднику в Cliq не позднее <strong>3-го рабочего дня</strong> следующего месяца. В отчёте отдельно: статус Sales Plan, статус нарушений, текущая позиция в счётчике 7.2.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.3', title: 'Спор по расчёту', content: [
+            { type: 'list', items: [
+              'При несогласии — тикет в Zoho Desk (тип: <strong>KPI Dispute</strong>) в течение <strong>5 рабочих дней</strong> с момента получения отчёта.',
+              'После 5 дней — расчёт считается принятым.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '06', title: 'Связь с бонусом',
+        content: [
+          { type: 'p', text: 'Конкретный размер бонуса, формула и условия выплаты определяются индивидуальным соглашением между сотрудником и компанией и в настоящем документе не фиксируются. Лишение бонуса возможно как одна из мер по разделу 7.2.' }
+        ]
+      },
+      {
+        number: '07', title: 'Ответственность',
+        content: [
+          { type: 'subsection', number: '7.1', title: 'Шкала по Sales Plan (по подряд идущим месяцам)', content: [
+            { type: 'table', headers: ['Шаг', 'Триггер', 'Мера'], rows: [
+              ['1', 'Первый месяц провала Плана', '<strong>Письменный выговор</strong> — размещается в личной карточке сотрудника в Zoho People с указанием конкретно: какой плановый показатель не достигнут и насколько.'],
+              ['2', 'Второй месяц провала Плана подряд', '<strong>Расторжение соглашения о сотрудничестве</strong> по инициативе компании.']
+            ]},
+            { type: 'p', text: 'Один полный месяц с выполнением Плана обнуляет счётчик подряд идущих провалов.' }
+          ]},
+          { type: 'subsection', number: '7.2', title: 'Шкала по нарушениям KPI / базового Регламента (по количеству)', content: [
+            { type: 'p', html: 'Каждое зафиксированное нарушение нормативов KPI (раздел 3) или базового Регламента засчитывается в <strong>скользящее окно</strong>. Длина окна и пороги количества для перехода на каждый шаг устанавливаются Приказом.' },
+            { type: 'table', headers: ['Шаг', 'Триггер', 'Мера'], rows: [
+              ['1', 'Достигнут первый порог', '<strong>Устное предупреждение</strong> с фиксацией в Cliq и в личной карточке сотрудника.'],
+              ['2', 'Достигнут второй порог', '<strong>Письменный выговор</strong> с указанием перечня нарушений.'],
+              ['3', 'Достигнут третий порог', '<strong>Лишение бонуса за этот месяц</strong> с обоснованием.'],
+              ['4', 'Достигнут четвёртый порог', '<strong>Второй выговор</strong>.'],
+              ['5', 'Достигнут пятый порог', '<strong>Расторжение соглашения о сотрудничестве</strong>.']
+            ]},
+            { type: 'p', html: 'Шаги 1–5 проходятся по нарастающей. Зафиксированные предупреждения и выговоры остаются в карточке сотрудника <strong>12 месяцев</strong> и могут учитываться при последующих разборах.' }
+          ]},
+          { type: 'subsection', number: '7.3', title: 'Перевыполнение Sales Plan как нивелирующий фактор', content: [
+            { type: 'p', text: 'Если по итогам месяца:' },
+            { type: 'list', items: [
+              'Sales Plan <strong>перевыполнен на 20% и более</strong> (см. 4.3), <strong>И</strong>',
+              'В этом же месяце были зафиксированы нарушения KPI / Регламента,'
+            ]},
+            { type: 'p', html: '— то нарушения этого месяца <strong>не учитываются</strong> в счётчике для шкалы 7.2. При этом:' },
+            { type: 'olist', items: [
+              'Зафиксированные нарушения помечаются в карточке сотрудника как <strong>«отложенные»</strong> (с типом и датой).',
+              'При <strong>новых нарушениях</strong> в течение <strong>следующих 90 дней</strong> эскалация по шкале 7.2 идёт <strong>с пропуском одного шага</strong> — например, при достижении первого порога сразу применяется мера второго шага (Выговор вместо Устного предупреждения).',
+              'Один полный календарный месяц без новых нарушений и без отложенных пометок снимает «отложенные» пометки.'
+            ]},
+            { type: 'callout', variant: 'tip', html: '<strong>Идея:</strong> перевыполнение Плана — это амнистия, а не индульгенция. Если сотрудник продолжает нарушать после прощения, реакция строже.' }
+          ]},
+          { type: 'subsection', number: '7.4', title: 'Право на пояснения', content: [
+            { type: 'p', html: 'Перед каждым шагом, начиная со второго (Выговор), сотруднику предоставляется <strong>3 рабочих дня</strong> на письменные пояснения. Пояснения учитываются, но не отменяют сам факт фиксации, если он подтверждён данными из CRM.' }
+          ]}
+        ]
+      },
+      {
+        number: '08', title: 'Заключительные положения',
+        content: [
+          { type: 'subsection', number: '8.1', title: 'Связь с базовым Регламентом', content: [
+            { type: 'p', html: 'Настоящие Нормативы — приложение к <strong>Регламенту использования экосистемы Zoho в Департаменте продаж</strong>. Поведенческие нарушения, не покрытые здесь, разбираются по базовому Регламенту.' }
+          ]},
+          { type: 'subsection', number: '8.2', title: 'Ознакомление', content: [
+            { type: 'p', text: 'Каждый Sales Manager подтверждает ознакомление отметкой (галочкой) в Zoho People. Без подтверждения допуск к работе с CRM-воронкой Sales не производится.' }
+          ]},
+          { type: 'subsection', number: '8.3', title: 'Изменения', content: [
+            { type: 'list', items: [
+              '<strong>Структура</strong> (разделы 2–4), <strong>порядок измерения</strong> (раздел 5) и <strong>шкала ответственности</strong> (раздел 7) пересматриваются по необходимости и публикуются в Zoho People с обязательным повторным ознакомлением.',
+              '<strong>Конкретные числовые значения</strong> меняются ежемесячным Приказом и <strong>не требуют переподписи</strong> настоящего документа.'
+            ]}
+          ]}
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────
   // 8. SALES — РЕГЛАМЕНT ИСПОЛЬЗОВАНИЯ ZOHO (RU)
   //    (Commercial Department, strict mode, Russian)
   // ────────────────────────────────────────
@@ -2049,7 +2557,7 @@ const documents = [
             { type: 'p', text: 'Каждая Сделка в активных стадиях (не Closed Won / Closed Lost) обязана иметь как минимум одну открытую задачу. Сделка без открытой задачи на текущий или ближайший рабочий день считается «брошенной» и фиксируется как нарушение.' }
           ]},
           { type: 'subsection', number: '4.6', title: 'Привязка задач к Сделке', content: [
-            { type: 'p', text: 'Задачи, события, звонки, письма создаются <strong>строго внутри Сделки</strong>. Создание активностей на уровне Контакта или Компании запрещено (исключение — pre-sales активности до возникновения Deal, согласованные с руководителем).' }
+            { type: 'p', html: 'Задачи, события, звонки, письма создаются <strong>строго внутри Сделки</strong>. Создание активностей на уровне Контакта или Компании запрещено (исключение — pre-sales активности до возникновения Deal, согласованные с руководителем).' }
           ]},
           { type: 'subsection', number: '4.7', title: 'Минимальная продуктивность дня', content: [
             { type: 'olist', items: [
@@ -2146,7 +2654,7 @@ const documents = [
         number: '08', title: 'Смена ответственного (Owner)',
         content: [
           { type: 'subsection', number: '8.1', title: 'Принцип каскада', content: [
-            { type: 'p', text: 'Смена ответственного производится <strong>только через карточку Компании</strong>. После смены Owner Компании ответственный обновляется во всех связанных Контактах и Сделках.' }
+            { type: 'p', html: 'Смена ответственного производится <strong>только через карточку Компании</strong>. После смены Owner Компании ответственный обновляется во всех связанных Контактах и Сделках.' }
           ]},
           { type: 'subsection', number: '8.2', title: 'Уведомление', content: [
             { type: 'p', text: 'Смена ответственного сопровождается:' },
