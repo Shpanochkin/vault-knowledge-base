@@ -2423,6 +2423,467 @@ const documents = [
   },
 
   // ────────────────────────────────────────
+  // 11. BUSINESS DEVELOPER — KPI STANDARDS (EN)
+  //     (Commercial Department, strict mode)
+  // ────────────────────────────────────────
+  {
+    id: 'Business_Developer_KPI_Standards',
+    title: 'Business Developer — KPI Standards',
+    heroTitle: 'Business Developer<br>KPI Standards',
+    badge: 'Commercial Department · Mandatory',
+    subtitle: 'Vault Group — KPI structure, BD Plan, measurement, and accountability rules for Business Developers.',
+    icon: ICONS.chart,
+    seed: 25,
+    style: 'strict',
+    department: 'commercial',
+    lang: 'en',
+    backHref: 'commercial-department.html',
+    backLabel: 'Back to Commercial Department',
+    backLabelShort: 'Commercial Department',
+    intro: 'This document establishes the structure of KPIs and the BD Plan for a Business Developer, the measurement procedure, and the accountability scale for non-performance. The actual numeric values are set in a monthly Order of the Chief Commercial Operations Officer and are not fixed in this document.',
+    signatureBlock: {
+      stampLabel: 'Approved',
+      intro: 'Issued and approved by the Chief Commercial Operations Officer of Vault Group.',
+      name: 'Sviatoslav Shpanochkin',
+      title: 'Chief Commercial Operations Officer',
+      date: 'May 1, 2026',
+      dateLabel: 'Effective date',
+      method: 'Signed via Zoho Sign'
+    },
+    sections: [
+      {
+        number: '01', title: 'General Provisions',
+        content: [
+          { type: 'subsection', number: '1.1', title: 'Purpose', content: [
+            { type: 'p', html: 'This document establishes the structure of KPIs and the BD Plan for a Business Developer, the measurement procedure, and the accountability scale for non-performance. The actual numeric values are set in a monthly Order of the <strong>Chief Commercial Operations Officer</strong> (the "CCOO"; Section 2) and are not fixed in this document.' }
+          ]},
+          { type: 'subsection', number: '1.2', title: 'Scope', content: [
+            { type: 'p', text: 'The document applies to all employees of the Commercial Department in the role of Business Developer (BD), including those acting in the role on a temporary basis.' }
+          ]},
+          { type: 'subsection', number: '1.3', title: 'Measurement Principles', content: [
+            { type: 'olist', items: [
+              'All metrics are pulled automatically from Zoho CRM based on data entered by the employee in line with the underlying <strong>Zoho Ecosystem Usage Regulation for the Sales Department</strong>.',
+              'If CRM data does not match reality, the corresponding metric is treated as failed regardless of the employee’s actual performance.',
+              'The measurement period depends on the metric (day / week / month). The final reckoning of the Plan and of violations is performed on the 1st business day of the following month.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.4', title: 'Two Independent Accountability Tracks', content: [
+            { type: 'list', items: [
+              '<strong>BD Plan</strong> — escalation by consecutive months of failure (Section 7.1).',
+              '<strong>KPI / Underlying Regulation</strong> — escalation by the count of violations within a rolling window (Section 7.2).'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.5', title: 'What This Document Sets vs. What the Order Sets', content: [
+            { type: 'list', items: [
+              '<strong>The document</strong> fixes the structure: what is measured, how, in which period, and with what consequences. Signed once.',
+              '<strong>The Order</strong> sets the actual numeric values for each month: the individual BD Plan, the KPI quotas, the limits, and the parameters of the disciplinary scale.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '02', title: 'Composition of the Monthly Order',
+        content: [
+          { type: 'p', text: 'The monthly Order from the CCOO sets, for each calendar month:' },
+          { type: 'subsection', title: '1. BD Plan', content: [
+            { type: 'list', items: [
+              'Plan number of meetings booked per employee.'
+            ]}
+          ]},
+          { type: 'subsection', title: '2. KPI Standards', content: [
+            { type: 'list', items: [
+              'Concrete values for "Activity".',
+              'Concrete intervals for "SLA" where the Order defines them.',
+              'Limits for permissible deviations under "Pipeline Hygiene".',
+              '<strong>Maximum permitted return rate</strong> (see 3.4).'
+            ]}
+          ]},
+          { type: 'subsection', title: '3. Parameters of the Disciplinary Scale (Section 7.2)', content: [
+            { type: 'list', items: [
+              'Length of the rolling window for the violations counter.',
+              'Violation count thresholds for each of the 5 steps of the scale.'
+            ]}
+          ]},
+          { type: 'subsection', number: '2.1', title: 'Publication Date', content: [
+            { type: 'p', html: 'The Order is published in Zoho People <strong>no later than the 1st business day</strong> of the month it applies to.' }
+          ]},
+          { type: 'subsection', number: '2.2', title: 'Acknowledgement', content: [
+            { type: 'p', html: 'Every Business Developer must acknowledge the Order (checkbox in Zoho People) within <strong>2 business days</strong> of its publication.' }
+          ]},
+          { type: 'subsection', number: '2.3', title: 'Force of the Order', content: [
+            { type: 'p', text: 'The Order has the same binding force as the present document.' }
+          ]}
+        ]
+      },
+      {
+        number: '03', title: 'KPI Standards Structure',
+        content: [
+          { type: 'subsection', number: '3.1', title: '“Activity” Group', content: [
+            { type: 'table', headers: ['Metric', 'Period', 'Description'], rows: [
+              ['Closed tasks', 'day', 'Tasks closed with the Description field filled (Underlying Regulation 4.1).'],
+              ['New companies in BD pipeline', 'month', 'An Account for which the BD created a Deal in the <code>BD Deal Layout</code>.'],
+              ['New contacts', 'month', 'A Contact added by the BD to an Account in the BD’s pipeline.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.2', title: '“Response SLA” Group', content: [
+            { type: 'table', headers: ['Metric', 'SLA', 'Description'], rows: [
+              ['First outreach to a new company', 'set by the Order', 'The first touch on the client after a Deal is created in the BD pipeline.'],
+              ['Missed call callback', '15 minutes', 'Per Underlying Regulation 9.1.4.'],
+              ['Reply to a client on WhatsApp (via Zoho CRM)', '<strong>5 minutes</strong>', 'During working hours.'],
+              ['Reply to a client by Email', '4 hours', 'Per Underlying Regulation 9.3.'],
+              ['Logging activity result in CRM', '30 minutes', 'After completing a client activity.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.3', title: '“Pipeline Hygiene” Group', content: [
+            { type: 'table', headers: ['Metric', 'Period', 'Description'], rows: [
+              ['Overdue tasks', 'continuous', 'Overdue tasks <strong>must not exist at all</strong>. Each occurrence is a violation.'],
+              ['Open tasks at end of day', 'day', 'At end of day <strong>no overdue and no tasks scheduled for today</strong> may remain.'],
+              ['"Abandoned" Deals', 'day', 'An active Deal without an open task for the current or next business day is a violation (Underlying Regulation 4.5).'],
+              ['"Set Next Step" closed within 24 hours', 'day', 'Per Underlying Regulation 4.4.'],
+              ['Mandatory field completeness', 'per deal', 'All mandatory fields for the current Pipeline stage are filled to 100% on every active Deal.'],
+              ['Duplicates', 'per occurrence', 'Creating a duplicate Account / Contact / Deal is a violation.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.4', title: '“Quality of Work” Group', content: [
+            { type: 'table', headers: ['Metric', 'Period', 'Description'], rows: [
+              ['Briefing for the receiving party', 'per deal', 'Before the meeting is recorded as booked, the Deal contains: a company summary, ICP criteria, the client’s need, agreements from the meeting, and links to materials.'],
+              ['Documentation', 'per deal', 'The Attachments contain a completed questionnaire or its equivalent and screenshots of correspondence from non-integrated channels (if any).'],
+              ['Deal result write-up', 'per deal', 'Closed Won / Disqualified/Rejected — a summary in the Deal’s Description.'],
+              ['<strong>% of returns to BD</strong>', 'month', 'The share of meetings booked by the BD on which the Sales Manager / Partnerships Associate flagged the Deal as <strong>"Return to BD"</strong> within <strong>N days</strong> (set by the Order). The maximum permitted return rate is set by the Order; exceeding the limit in a month = 1 violation in the 7.2 counter.'],
+              ['Receiving-party score', 'month', 'Once a month the SM / PA scores the quality of handed-off leads on a 1–5 scale. An average below <strong>3.0</strong> is grounds for a conversation with the direct supervisor.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.5', title: 'Conversions (informational)', content: [
+            { type: 'p', html: 'BD pipeline stages per Layout <code>BD Deal Layout</code> in Zoho CRM:' },
+            { type: 'callout', variant: 'important', html: 'BD Outreach → BD Qualification → Meeting Pending → Closed Won (or, in parallel — Disqualified/Rejected).' },
+            { type: 'p', html: 'Conversions are <strong>tracked on the dashboards</strong> as pipeline diagnostics. <strong>Conversions are not subject to disciplinary action.</strong>' }
+          ]}
+        ]
+      },
+      {
+        number: '04', title: 'BD Plan Structure',
+        content: [
+          { type: 'subsection', number: '4.1', title: 'Composition of the Plan', content: [
+            { type: 'p', html: 'The monthly BD Plan is set in the Order and consists of <strong>a single metric — the plan number of meetings booked</strong>.' },
+            { type: 'p', html: 'A "booked meeting" = a Deal in the BD pipeline moved to the <code>Closed Won</code> stage within the calendar month.' }
+          ]},
+          { type: 'subsection', number: '4.2', title: 'What Counts as Plan Achieved', content: [
+            { type: 'p', html: 'The BD Plan is considered <strong>met</strong> for the month when the actual number of <code>Closed Won</code> deals in the BD pipeline is greater than or equal to the plan.' }
+          ]},
+          { type: 'subsection', number: '4.3', title: 'What Counts as Plan Overachieved (for Section 7.3)', content: [
+            { type: 'p', html: 'The BD Plan is considered <strong>overachieved by 20% or more</strong> when the actual number of meetings booked exceeds the plan by 20% or more.' }
+          ]}
+        ]
+      },
+      {
+        number: '05', title: 'Source of Data and Calculation',
+        content: [
+          { type: 'subsection', number: '5.1', title: 'Source', content: [
+            { type: 'p', text: 'All metrics are pulled automatically from Zoho CRM Dashboards (BD KPI Monitor → Business Developer). Manual adjustments to the calculation are prohibited.' }
+          ]},
+          { type: 'subsection', number: '5.2', title: 'Transparency', content: [
+            { type: 'list', items: [
+              'The BD has access to a personal real-time dashboard.',
+              'A monthly report is sent to the employee in Cliq no later than the <strong>3rd business day</strong> of the following month. The report covers: BD Plan status, violations status, current 7.2 counter position, % of returns.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.3', title: 'Disputing the Calculation', content: [
+            { type: 'p', html: 'A Zoho Desk ticket (type: <strong>KPI Dispute</strong>) within <strong>5 business days</strong> of receiving the report. After 5 business days the calculation is considered accepted.' }
+          ]}
+        ]
+      },
+      {
+        number: '06', title: 'Relation to Bonus',
+        content: [
+          { type: 'p', text: 'The actual size of the bonus, the formula, and the conditions of payment are set by the individual agreement and are not fixed in this document. Withholding of the bonus is possible as one of the measures under Section 7.2.' }
+        ]
+      },
+      {
+        number: '07', title: 'Accountability',
+        content: [
+          { type: 'subsection', number: '7.1', title: 'BD Plan Scale (by consecutive months)', content: [
+            { type: 'table', headers: ['Step', 'Trigger', 'Measure'], rows: [
+              ['1', 'First month with a failed Plan', '<strong>Written reprimand</strong> — placed in the employee’s record in Zoho People with a note on the gap to the plan number.'],
+              ['2', 'Second consecutive month with a failed Plan', '<strong>Termination of the contractor agreement</strong> at the company’s initiative.']
+            ]},
+            { type: 'p', text: 'A single full month with the Plan met resets the consecutive-failure counter.' }
+          ]},
+          { type: 'subsection', number: '7.2', title: 'KPI / Underlying Regulation Violations Scale (by count)', content: [
+            { type: 'p', html: 'Every recorded violation is added to a <strong>rolling window</strong>. The length of the window and the count thresholds are set by the Order.' },
+            { type: 'table', headers: ['Step', 'Trigger', 'Measure'], rows: [
+              ['1', 'First threshold reached', '<strong>Verbal warning</strong> with a record.'],
+              ['2', 'Second threshold reached', '<strong>Written reprimand</strong>.'],
+              ['3', 'Third threshold reached', '<strong>Withholding of the current monthly bonus</strong> with a stated rationale.'],
+              ['4', 'Fourth threshold reached', '<strong>Second written reprimand</strong>.'],
+              ['5', 'Fifth threshold reached', '<strong>Termination of the contractor agreement</strong>.']
+            ]},
+            { type: 'p', html: 'Recorded warnings and reprimands stay in the employee’s profile for <strong>12 months</strong>.' }
+          ]},
+          { type: 'subsection', number: '7.3', title: 'Plan Overachievement as a Mitigating Factor', content: [
+            { type: 'p', html: 'If the BD Plan is overachieved by 20% or more for the month (see 4.3), violations recorded in that month are <strong>not added</strong> to the 7.2 counter. At the same time:' },
+            { type: 'olist', items: [
+              'The recorded violations are flagged in the employee’s profile as <strong>"deferred"</strong>.',
+              'Should new violations be recorded over the <strong>next 90 days</strong>, the 7.2 escalation <strong>skips one step</strong>.',
+              'A single full calendar month with no new violations and no deferred flags clears the deferred flags.'
+            ]}
+          ]},
+          { type: 'subsection', number: '7.4', title: 'Right to Submit Explanations', content: [
+            { type: 'p', html: 'Before each step from the second (Reprimand) onward, the employee is given <strong>3 business days</strong> to submit a written explanation.' }
+          ]}
+        ]
+      },
+      {
+        number: '08', title: 'Final Provisions',
+        content: [
+          { type: 'subsection', number: '8.1', title: 'Relation to the Underlying Regulation', content: [
+            { type: 'p', html: 'The present Standards are an annex to the <strong>Zoho Ecosystem Usage Regulation for the Sales Department</strong>.' }
+          ]},
+          { type: 'subsection', number: '8.2', title: 'Acknowledgement', content: [
+            { type: 'p', text: 'Every Business Developer confirms acknowledgement by ticking the corresponding checkbox in Zoho People. Until the acknowledgement is recorded, access to the BD CRM pipeline is not granted.' }
+          ]},
+          { type: 'subsection', number: '8.3', title: 'Amendments', content: [
+            { type: 'list', items: [
+              '<strong>The structure</strong> (Sections 2–4), <strong>the measurement procedure</strong> (Section 5), and <strong>the accountability scale</strong> (Section 7) are reviewed as needed and republished with mandatory re-acknowledgement.',
+              '<strong>The numeric values</strong> are changed by the monthly Order and <strong>do not require re-signing</strong> of the document.'
+            ]}
+          ]}
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────
+  // 12. BUSINESS DEVELOPER — НОРМАТИВЫ KPI (RU)
+  //     (Commercial Department, strict mode, Russian, PDF only)
+  // ────────────────────────────────────────
+  {
+    id: 'Business_Developer_KPI_Standards_RU',
+    title: 'Нормативы KPI — Business Developer',
+    heroTitle: 'Нормативы KPI<br>Business Developer',
+    badge: 'Commercial Department · Обязательно',
+    subtitle: 'Vault Group — Структура KPI, BD Plan, порядок измерения и ответственность для Business Developer.',
+    icon: ICONS.chart,
+    seed: 27.5,
+    style: 'strict',
+    department: 'commercial',
+    webHidden: true,
+    lang: 'ru',
+    backHref: 'commercial-department.html',
+    backLabel: 'Назад в Commercial Department',
+    backLabelShort: 'Commercial Department',
+    intro: 'Настоящий документ устанавливает структуру KPI и Плана Business Developer, порядок измерения и шкалу ответственности за невыполнение. Конкретные числовые значения устанавливаются ежемесячным Приказом Chief Commercial Operations Officer и в данном документе не фиксируются.',
+    signatureBlock: {
+      stampLabel: 'Утверждено',
+      intro: 'Издано и утверждено Chief Commercial Operations Officer Vault Group.',
+      name: 'Святослав Шпаночкин',
+      title: 'Chief Commercial Operations Officer',
+      date: '1 мая 2026 г.',
+      dateLabel: 'Дата вступления в силу',
+      method: 'Подписано через Zoho Sign'
+    },
+    sections: [
+      {
+        number: '01', title: 'Общие положения',
+        content: [
+          { type: 'subsection', number: '1.1', title: 'Назначение', content: [
+            { type: 'p', html: 'Настоящий документ устанавливает структуру KPI и Плана Business Developer, порядок измерения и шкалу ответственности за невыполнение. Конкретные числовые значения устанавливаются ежемесячным <strong>Приказом Chief Commercial Operations Officer</strong> (далее — CCOO; раздел 2) и в данном документе не фиксируются.' }
+          ]},
+          { type: 'subsection', number: '1.2', title: 'Область применения', content: [
+            { type: 'p', text: 'Документ распространяется на всех сотрудников Commercial Department в роли Business Developer (BD), включая временно исполняющих обязанности.' }
+          ]},
+          { type: 'subsection', number: '1.3', title: 'Принципы измерения', content: [
+            { type: 'olist', items: [
+              'Все метрики снимаются автоматически из Zoho CRM на основании данных, занесённых в соответствии с базовым <strong>Регламентом использования экосистемы Zoho в Департаменте продаж</strong>.',
+              'Если данные в CRM не соответствуют действительности — норматив или план считается проваленным вне зависимости от фактической работы.',
+              'Период измерения зависит от метрики (день / неделя / месяц). Итоговый зачёт по Плану и нарушениям производится на 1-й рабочий день следующего месяца.'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.4', title: 'Два независимых трека ответственности', content: [
+            { type: 'list', items: [
+              '<strong>BD Plan</strong> — шкала по подряд идущим месяцам провала (раздел 7.1).',
+              '<strong>KPI / базовый Регламент</strong> — шкала по количеству нарушений в скользящем окне (раздел 7.2).'
+            ]}
+          ]},
+          { type: 'subsection', number: '1.5', title: 'Что устанавливает настоящий документ, а что — Приказ', content: [
+            { type: 'list', items: [
+              '<strong>Документ</strong> фиксирует структуру: что измеряется, как, в какой период, с какими последствиями. Подписывается единожды.',
+              '<strong>Приказ</strong> на каждый месяц устанавливает конкретные числовые значения: индивидуальный BD Plan, нормативы KPI, лимиты, параметры дисциплинарной шкалы.'
+            ]}
+          ]}
+        ]
+      },
+      {
+        number: '02', title: 'Состав ежемесячного Приказа',
+        content: [
+          { type: 'p', text: 'Приказ CCOO на каждый календарный месяц устанавливает:' },
+          { type: 'subsection', title: '1. BD Plan', content: [
+            { type: 'list', items: [
+              'Плановое <strong>количество назначенных встреч</strong> на сотрудника.'
+            ]}
+          ]},
+          { type: 'subsection', title: '2. Нормативы KPI', content: [
+            { type: 'list', items: [
+              'Конкретные значения по группе «Активность».',
+              'Конкретные интервалы по группе «SLA», где Приказ их задаёт.',
+              'Лимиты допустимых отклонений по группе «Гигиена воронки».',
+              '<strong>Максимально допустимый процент возвратов</strong> (см. 3.4).'
+            ]}
+          ]},
+          { type: 'subsection', title: '3. Параметры дисциплинарной шкалы (раздел 7.2)', content: [
+            { type: 'list', items: [
+              'Длина скользящего окна счётчика нарушений.',
+              'Пороги количества нарушений для каждого из 5 шагов шкалы.'
+            ]}
+          ]},
+          { type: 'subsection', number: '2.1', title: 'Срок публикации', content: [
+            { type: 'p', html: 'Приказ публикуется в Zoho People <strong>не позднее 1-го рабочего дня</strong> месяца, к которому применяется.' }
+          ]},
+          { type: 'subsection', number: '2.2', title: 'Ознакомление', content: [
+            { type: 'p', html: 'Каждый Business Developer обязан ознакомиться с Приказом (отметка в Zoho People) в течение <strong>2 рабочих дней</strong> с момента публикации.' }
+          ]},
+          { type: 'subsection', number: '2.3', title: 'Сила Приказа', content: [
+            { type: 'p', text: 'Приказ имеет ту же обязательную силу, что и настоящий документ.' }
+          ]}
+        ]
+      },
+      {
+        number: '03', title: 'Структура нормативов KPI',
+        content: [
+          { type: 'subsection', number: '3.1', title: 'Группа «Активность»', content: [
+            { type: 'table', headers: ['Метрика', 'Период', 'Описание'], rows: [
+              ['Закрытые задачи', 'день', 'Задачи, закрытые с заполненным Description (базовый Регламент 4.1).'],
+              ['Новые компании в BD-воронке', 'месяц', 'Account, по которому BD создал Сделку в Layout <code>BD Deal Layout</code>.'],
+              ['Новые контакты', 'месяц', 'Contact, добавленный BD к Account из своей воронки.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.2', title: 'Группа «SLA скорости реакции»', content: [
+            { type: 'table', headers: ['Метрика', 'SLA', 'Описание'], rows: [
+              ['Первый outreach по новой компании', 'устанавливается Приказом', 'Первое касание клиента после создания Сделки в воронке BD.'],
+              ['Возврат пропущенного звонка', '15 минут', 'По базовому Регламенту 9.1.4.'],
+              ['Ответ клиенту в WhatsApp (через Zoho CRM)', '<strong>5 минут</strong>', 'В рабочее время.'],
+              ['Ответ клиенту по Email', '4 часа', 'По базовому Регламенту 9.3.'],
+              ['Внесение результата в CRM', '30 минут', 'После завершения клиентской активности.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.3', title: 'Группа «Гигиена воронки»', content: [
+            { type: 'table', headers: ['Метрика', 'Период', 'Описание'], rows: [
+              ['Просроченные задачи', 'непрерывно', 'Просроченных задач <strong>не должно быть в принципе</strong>. Каждый случай — нарушение.'],
+              ['Открытые задачи на конец рабочего дня', 'день', 'На конец дня <strong>ни просроченных, ни запланированных на сегодня</strong>.'],
+              ['«Брошенные» Сделки', 'день', 'Активная Сделка без открытой задачи на текущий или ближайший рабочий день — нарушение (базовый Регламент 4.5).'],
+              ['Закрытие «Set Next Step» в течение суток', 'день', 'По базовому Регламенту 4.4.'],
+              ['Заполненность обязательных полей', 'сделка', 'Для всех активных Сделок обязательные по этапу поля заполнены на 100%.'],
+              ['Дубликаты', 'случай', 'Создание дубликата Account / Contact / Deal — нарушение.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.4', title: 'Группа «Качество работы»', content: [
+            { type: 'table', headers: ['Метрика', 'Период', 'Описание'], rows: [
+              ['Briefing для принимающей стороны', 'сделка', 'Перед фиксацией назначенной встречи в карточке Сделки заполнено: саммари по компании, ICP-критерии, потребность клиента, договорённости со встречи, ссылки на материалы.'],
+              ['Документация', 'сделка', 'В Attachments — заполненный опросник или его эквивалент, скриншоты переписки из неинтегрированных каналов (если были).'],
+              ['Описание результата сделки', 'сделка', 'Closed Won / Disqualified/Rejected — заполненное саммари в Description.'],
+              ['<strong>% возвратов в BD</strong>', 'месяц', 'Доля назначенных BD встреч, по которым Sales Manager / Partnerships Associate в течение <strong>N дней</strong> (устанавливается Приказом) пометил Сделку флагом <strong>«Return to BD»</strong>. Лимит максимально допустимого процента устанавливается Приказом; превышение лимита за месяц = 1 нарушение в счётчике шкалы 7.2.'],
+              ['Оценка принимающей стороной', 'месяц', 'SM / PA по итогам каждого месяца оценивает качество переданных лидов по шкале 1–5. Средняя ниже <strong>3.0</strong> — основание для разговора с непосредственным руководителем.']
+            ]}
+          ]},
+          { type: 'subsection', number: '3.5', title: 'Конверсии (информативно)', content: [
+            { type: 'p', html: 'Этапы воронки BD соответствуют Layout <code>BD Deal Layout</code> в Zoho CRM:' },
+            { type: 'callout', variant: 'important', html: 'BD Outreach → BD Qualification → Meeting Pending → Closed Won (либо параллельно — Disqualified/Rejected).' },
+            { type: 'p', html: 'Конверсии <strong>отслеживаются на дашбордах</strong> для диагностики работы воронки. <strong>Конверсии не являются предметом дисциплинарной ответственности.</strong>' }
+          ]}
+        ]
+      },
+      {
+        number: '04', title: 'Структура BD Plan',
+        content: [
+          { type: 'subsection', number: '4.1', title: 'Состав Плана', content: [
+            { type: 'p', html: 'BD Plan на месяц задаётся Приказом и состоит из <strong>одного показателя — планового количества назначенных встреч</strong>.' },
+            { type: 'p', html: '«Назначенная встреча» = Сделка в воронке BD, переведённая в стадию <code>Closed Won</code> в течение календарного месяца.' }
+          ]},
+          { type: 'subsection', number: '4.2', title: 'Что считается выполнением', content: [
+            { type: 'p', html: 'BD Plan считается <strong>выполненным</strong> по итогам месяца, если фактическое количество <code>Closed Won</code> в воронке BD равно или превышает плановое.' }
+          ]},
+          { type: 'subsection', number: '4.3', title: 'Что считается перевыполнением (для раздела 7.3)', content: [
+            { type: 'p', html: 'BD Plan считается <strong>перевыполненным на 20% и более</strong>, если фактическое количество назначенных встреч превышает плановое на 20% или больше.' }
+          ]}
+        ]
+      },
+      {
+        number: '05', title: 'Источник данных и расчёт',
+        content: [
+          { type: 'subsection', number: '5.1', title: 'Источник', content: [
+            { type: 'p', text: 'Все метрики снимаются автоматически из Zoho CRM Dashboards (BD KPI Monitor → Business Developer). Ручные корректировки расчёта запрещены.' }
+          ]},
+          { type: 'subsection', number: '5.2', title: 'Прозрачность', content: [
+            { type: 'list', items: [
+              'BD имеет доступ к личному дашборду в реальном времени.',
+              'Ежемесячный отчёт направляется сотруднику в Cliq не позднее <strong>3-го рабочего дня</strong> следующего месяца. В отчёте: статус BD Plan, статус нарушений, текущая позиция в счётчике 7.2, % возвратов.'
+            ]}
+          ]},
+          { type: 'subsection', number: '5.3', title: 'Спор по расчёту', content: [
+            { type: 'p', html: 'Тикет в Zoho Desk (тип: <strong>KPI Dispute</strong>) в течение <strong>5 рабочих дней</strong> с момента получения отчёта. После 5 дней — расчёт считается принятым.' }
+          ]}
+        ]
+      },
+      {
+        number: '06', title: 'Связь с бонусом',
+        content: [
+          { type: 'p', text: 'Конкретный размер бонуса, формула и условия выплаты определяются индивидуальным соглашением и в настоящем документе не фиксируются. Лишение бонуса возможно как одна из мер по разделу 7.2.' }
+        ]
+      },
+      {
+        number: '07', title: 'Ответственность',
+        content: [
+          { type: 'subsection', number: '7.1', title: 'Шкала по BD Plan (по подряд идущим месяцам)', content: [
+            { type: 'table', headers: ['Шаг', 'Триггер', 'Мера'], rows: [
+              ['1', 'Первый месяц провала Плана', '<strong>Письменный выговор</strong> — размещается в личной карточке сотрудника в Zoho People с указанием насколько не достигнуто плановое количество.'],
+              ['2', 'Второй месяц провала Плана подряд', '<strong>Расторжение соглашения о сотрудничестве</strong> по инициативе компании.']
+            ]},
+            { type: 'p', text: 'Один полный месяц с выполнением Плана обнуляет счётчик подряд идущих провалов.' }
+          ]},
+          { type: 'subsection', number: '7.2', title: 'Шкала по нарушениям KPI / базового Регламента (по количеству)', content: [
+            { type: 'p', html: 'Каждое зафиксированное нарушение засчитывается в <strong>скользящее окно</strong>. Длина окна и пороги устанавливаются Приказом.' },
+            { type: 'table', headers: ['Шаг', 'Триггер', 'Мера'], rows: [
+              ['1', 'Достигнут первый порог', '<strong>Устное предупреждение</strong> с фиксацией.'],
+              ['2', 'Достигнут второй порог', '<strong>Письменный выговор</strong>.'],
+              ['3', 'Достигнут третий порог', '<strong>Лишение бонуса за текущий месяц</strong> с обоснованием.'],
+              ['4', 'Достигнут четвёртый порог', '<strong>Второй выговор</strong>.'],
+              ['5', 'Достигнут пятый порог', '<strong>Расторжение соглашения о сотрудничестве</strong>.']
+            ]},
+            { type: 'p', html: 'Зафиксированные предупреждения и выговоры остаются в карточке сотрудника <strong>12 месяцев</strong>.' }
+          ]},
+          { type: 'subsection', number: '7.3', title: 'Перевыполнение BD Plan как нивелирующий фактор', content: [
+            { type: 'p', html: 'Если по итогам месяца BD Plan перевыполнен на 20% и более (см. 4.3), зафиксированные в этом месяце нарушения KPI / Регламента <strong>не учитываются</strong> в счётчике для шкалы 7.2. При этом:' },
+            { type: 'olist', items: [
+              'Нарушения помечаются в карточке сотрудника как <strong>«отложенные»</strong>.',
+              'При новых нарушениях в течение <strong>следующих 90 дней</strong> эскалация по шкале 7.2 идёт <strong>с пропуском одного шага</strong>.',
+              'Один полный календарный месяц без новых нарушений и без отложенных пометок снимает «отложенные» пометки.'
+            ]}
+          ]},
+          { type: 'subsection', number: '7.4', title: 'Право на пояснения', content: [
+            { type: 'p', html: 'Перед каждым шагом, начиная со второго (Выговор), сотруднику предоставляется <strong>3 рабочих дня</strong> на письменные пояснения.' }
+          ]}
+        ]
+      },
+      {
+        number: '08', title: 'Заключительные положения',
+        content: [
+          { type: 'subsection', number: '8.1', title: 'Связь с базовым Регламентом', content: [
+            { type: 'p', html: 'Настоящие Нормативы — приложение к <strong>Регламенту использования экосистемы Zoho в Департаменте продаж</strong>.' }
+          ]},
+          { type: 'subsection', number: '8.2', title: 'Ознакомление', content: [
+            { type: 'p', text: 'Каждый Business Developer подтверждает ознакомление отметкой в Zoho People. Без подтверждения допуск к работе с CRM-воронкой BD не производится.' }
+          ]},
+          { type: 'subsection', number: '8.3', title: 'Изменения', content: [
+            { type: 'list', items: [
+              '<strong>Структура</strong> (разделы 2–4), <strong>порядок измерения</strong> (раздел 5) и <strong>шкала ответственности</strong> (раздел 7) пересматриваются по необходимости с обязательным повторным ознакомлением.',
+              '<strong>Конкретные числовые значения</strong> меняются ежемесячным Приказом и <strong>не требуют переподписи</strong> документа.'
+            ]}
+          ]}
+        ]
+      }
+    ]
+  },
+
+  // ────────────────────────────────────────
   // 8. SALES — РЕГЛАМЕНT ИСПОЛЬЗОВАНИЯ ZOHO (RU)
   //    (Commercial Department, strict mode, Russian)
   // ────────────────────────────────────────
