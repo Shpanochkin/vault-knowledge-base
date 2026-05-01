@@ -904,10 +904,12 @@ function generateHTML(doc) {
     body.pdf-mode .scroll-hint,
     body.pdf-mode #waveCanvas,
     body.pdf-mode .footer-back,
-    body.pdf-mode .footer-back-wrap { display: none !important; }
+    body.pdf-mode .footer-back-wrap,
+    body.pdf-mode .footer-right { display: none !important; }
     @media print {
       .footer-back,
-      .footer-back-wrap { display: none !important; }
+      .footer-back-wrap,
+      .footer-right { display: none !important; }
     }
 
     body.pdf-mode .hero {
